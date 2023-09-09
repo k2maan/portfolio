@@ -1,4 +1,4 @@
-import blogDown from "@/public/blogdown.jpg";
+import blogDown from "@/public/blogDown.jpg";
 import codePenClone from "@/public/codePenClone.jpg";
 import easyResume from "@/public/easyResume.jpg";
 import eduguardian from "@/public/eduguardian.jpg";
