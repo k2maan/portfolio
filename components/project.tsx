@@ -1,9 +1,7 @@
 "use client";
 
-import { useRef } from "react";
 import { projectsData } from "@/lib/data";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { GoLinkExternal } from "react-icons/go";
 import { FiGithub } from "react-icons/fi";
 
@@ -17,21 +15,8 @@ export default function Project({
   githubUrl,
   liveUrl,
 }: ProjectProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["0 1", "0.9 1"],
-  });
-  const scaleProgess = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
-
   return (
-    <motion.div
-      ref={ref}
-      style={{
-        scale: scaleProgess,
-        opacity: opacityProgess,
-      }}
+    <div
       className="group mb-3 sm:mb-8 last:mb-0"
     >
       <section className="bg-white max-w-[44rem] border border-black/20 rounded-lg overflow-hidden sm:pr-8 relative sm:h-[20rem] hover:bg-gray-100 transition dark:border-white/20 dark:text-white dark:bg-black  dark:hover:bg-white/5">
@@ -87,6 +72,6 @@ export default function Project({
         />
         <div className="bg-blue-900 -z-10 absolute bottom-0 left-60 right-0 top-0 h-full w-full overflow-hidden ease-in-out opacity-50 rounded-full blur-[8rem] sm:w-[60.75rem] dark:bg-[#2c1f4a]"></div>
       </section>
-    </motion.div>
+    </div>
   );
 }
