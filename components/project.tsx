@@ -29,8 +29,8 @@ export default function Project({
           className="object-contain absolute hidden sm:block -top-1 -right-40 w-[30.25rem] rounded-none shadow-2xl
           transition 
           group-hover:scale-[1.03]
-          group-hover:-translate-x-6
-          group-hover:translate-y-3
+          group-hover:-translate-x-2
+          group-hover:translate-y-2
           "
         />
 

@@ -38,7 +38,6 @@ export default function Footer() {
         <span className="font-semibold"></span> Built with React & Next.js (App
         Router & Server Actions), TypeScript, Tailwind CSS, Framer Motion.
       </p>
-      <div className="-z-10 absolute bottom-10 sm:left-[14rem] left-[3rem] right-0 top-0 h-full w-[20rem] overflow-hidden opacity-50 rounded-full blur-[9rem] sm:w-[70.75rem] bg-[#3b4775]"></div>
     </footer>
   );
 }
