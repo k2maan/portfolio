@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
- 
   // Optional: Change links `/me` -> `/me/` and emit `/me.html` -> `/me/index.html`
   // trailingSlash: true,
  
@@ -10,7 +8,11 @@ const nextConfig = {
  
   // Optional: Change the output directory `out` -> `dist`
   // distDir: 'dist',
-  images: { unoptimized: true }
+  images: { unoptimized: true },
+  generateBuildId: async () => {
+    // You can, for example, get the latest git commit hash here
+    return 'my-build-id'
+  },
 }
 
 module.exports = nextConfig

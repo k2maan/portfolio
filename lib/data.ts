@@ -86,21 +86,3 @@ export const projectsData = [
     liveUrl: ''
   },
 ] as const;
-
-export const skillsData = {
-  "proficient": [
-    "JavaScript",
-    "Vue",
-    "React",
-    "Ionic",
-  ],
-  "canWorkWith": [
-    "TypeScript",
-    "Node.js",
-    "Next.js",
-    "MongoDB",
-    "SQL",
-    "AWS",
-    "Tailwind",
-  ]
-} as const

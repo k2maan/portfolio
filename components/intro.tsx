@@ -40,7 +40,7 @@ export default function Intro() {
         animate={{ opacity: 1, y: 0 }}
       >
         <span className="font-bold uppercase">Ketuman Vishwakarma</span>
-        <span className="text-center italic text-sm sm:text-xl underline decoration-[#cf74be] dark:decoration-[#45578d]">
+        <span className="text-center italic text-sm sm:text-xl underline decoration-[#45578d]">
           Software Engineer / Frontend Developer
         </span>
       </motion.h1>
@@ -54,7 +54,7 @@ export default function Intro() {
         }}
       >
         <a
-          className="p-4 flex items-center gap-2 rounded-full focus:scale-[1.10] hover:scale-[1.10] active:scale-105 transition cursor-pointer border bg-black text-white/100 dark:text-white/80 border-white/10"
+          className="p-4 flex items-center gap-2 rounded-full focus:scale-[1.10] hover:scale-[1.10] active:scale-105 transition cursor-pointer border bg-black text-white/80 border-white/10"
           href="https://linkedin.com/in/k2maan"
           target="_blank"
         >
@@ -62,7 +62,7 @@ export default function Intro() {
         </a>
 
         <a
-          className="p-4 text-[1.3rem] flex items-center gap-2 rounded-full focus:scale-[1.10] hover:scale-[1.10] active:scale-105 transition cursor-pointer border bg-black text-white/100 dark:text-white/80 border-white/10"
+          className="p-4 text-[1.3rem] flex items-center gap-2 rounded-full focus:scale-[1.10] hover:scale-[1.10] active:scale-105 transition cursor-pointer border bg-blacktext-white/80 border-white/10"
           href="https://github.com/k2maan"
           target="_blank"
         >
@@ -70,7 +70,7 @@ export default function Intro() {
         </a>
 
         <a
-          className="p-4 flex items-center gap-2 rounded-full focus:scale-[1.10] hover:scale-[1.10] active:scale-105 transition cursor-pointer border bg-black text-white/100 dark:text-white/80 border-white/10"
+          className="p-4 flex items-center gap-2 rounded-full focus:scale-[1.10] hover:scale-[1.10] active:scale-105 transition cursor-pointer border bg-black text-white/80 border-white/10"
           href="mailto:ketuman333@gmail.com"
           target="_blank"
         >
