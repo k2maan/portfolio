@@ -62,7 +62,7 @@ export default function Intro() {
         </a>
 
         <a
-          className="p-4 text-[1.3rem] flex items-center gap-2 rounded-full focus:scale-[1.10] hover:scale-[1.10] active:scale-105 transition cursor-pointer border bg-blacktext-white/80 border-white/10"
+          className="p-4 text-[1.3rem] flex items-center gap-2 rounded-full focus:scale-[1.10] hover:scale-[1.10] active:scale-105 transition cursor-pointer border bg-black text-white/80 border-white/10"
           href="https://github.com/k2maan"
           target="_blank"
         >

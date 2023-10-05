@@ -38,14 +38,14 @@ export default function About() {
           </p>
 
           <p className="mb-6 text-lg lg:text-left">
-            I also consistently post JS and web dev related content on my {" "}
+            I also consistently post JS and web dev related content on my{" "}
             <span className="underline font-bold text-[#9eb8d6]">
               <a href="https://www.linkedin.com/in/k2maan/">LinkedIn</a>
-            </span>.
+            </span>
+            .
           </p>
         </div>
         <div className="flex justify-center items-center relative">
-
           <Image
             src={aboutImg}
             alt="Ketuman Vishwakarma"
