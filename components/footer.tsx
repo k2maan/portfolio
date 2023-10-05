@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="mb-24 sm:mb-8 px-4 text-center text-gray-500 relative">
       <section className="flex flex-nowrap sm:flex-row items-center m-8 justify-center gap-2">
-      <a
+        <a
           className="p-4 flex items-center gap-2 rounded-full focus:scale-[1.10] hover:scale-[1.10] active:scale-105 transition cursor-pointer border bg-black text-white/80 border-white/10"
           href="https://linkedin.com/in/k2maan"
           target="_blank"
@@ -32,7 +32,10 @@ export default function Footer() {
         </a>
       </section>
       <small className="mb-2 block text-xs">
-        Developed by <span className="underline"><a href="https://github.com/k2maan">k2maan</a></span>.
+        Developed by{" "}
+        <span className="underline">
+          <a href="https://github.com/k2maan">k2maan</a>
+        </span>.
       </small>
     </footer>
   );
