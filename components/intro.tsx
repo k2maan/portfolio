@@ -24,7 +24,7 @@ export default function Intro() {
             }}
           >
             <Image
-              className="w-32 rounded-full object-cover shadow-xl border-white/30 border-2"
+              className="w-32 rounded-full object-cover"
               quality={90}
               priority={true}
               src={profileImg}

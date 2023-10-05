@@ -32,12 +32,8 @@ export default function Footer() {
         </a>
       </section>
       <small className="mb-2 block text-xs">
-        &copy; 2023 k2maan. All rights reserved.
+        Developed by <span className="underline"><a href="https://github.com/k2maan">k2maan</a></span>.
       </small>
-      <p className="text-xs">
-        <span className="font-semibold"></span> Built with React & Next.js (App
-        Router & Server Actions), TypeScript, Tailwind CSS, Framer Motion.
-      </p>
     </footer>
   );
 }

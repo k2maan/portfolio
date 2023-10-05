@@ -2,26 +2,58 @@
 
 import React from "react";
 import SectionHeading from "./section-heading";
+import Image from "next/image";
+import aboutImg from "@/public/aboutImg.jpg";
 
 export default function About() {
   return (
     <div className="relative">
+      <SectionHeading>About</SectionHeading>
       <section
-        className="mb-6 max-w-[45rem] flex flex-col items-center text-center leading-7 sm:mb-12 scroll-mt-28 relative"
+        className="mb-6 max-w-[45rem] lg:flex items-center text-center leading-7 sm:mb-12 scroll-mt-28 relative"
         id="about"
       >
-        <SectionHeading>About</SectionHeading>
-        <p className="mb-5 text-lg text-center">
-          Currenly employed at <span className="font-bold text-[#d6af9e]"><a href="https://hotwax.co">HotWax Commerce</a></span>{" "} as an{" "}
-          <span className="font-bold">Enterprise Software Engineer (Frontend)</span>,
-          creating and enhancing their Shopify OMS product suite.
-        </p>
-        
-        <p className="mb-6 text-lg text-center">
-          <span className="font-bold text-[#efefab]">JavaScript</span> and the web continually
-          ignite my passion for <span className="font-bold">innovation</span>{" "}
-          and <span className="font-bold">creation</span>.
-        </p>
+        <div className="m-5 ml-2">
+          <p className="mb-5 text-lg lg:text-left">
+            Currently employed at{" "}
+            <span className="underline font-bold text-[#d6af9e]">
+              <a href="https://hotwax.co">HotWax Commerce</a>
+            </span>{" "}
+            as a <span className="font-bold">Software Engineer</span>, working
+            with the Frontend team, creating and enhancing their Shopify OMS
+            product suite.
+          </p>
+
+          <p className="mb-5 text-lg lg:text-left">
+            <span className="font-bold text-[#efefab]">JavaScript</span> and the
+            web continually fuel my passion for{" "}
+            <span className="font-bold">creation</span>.
+          </p>
+
+          <p className="mb-6 text-lg lg:text-left">
+            When I'm not coding, I'm either immersed in{" "}
+            <span className="font-bold">movies and animes</span>, capturing{" "}
+            <span className="font-bold">self-portraits</span>, or reading{" "}
+            <span className="font-bold">something</span>.
+          </p>
+
+          <p className="mb-6 text-lg lg:text-left">
+            I also consistently post JS and web dev related content on my {" "}
+            <span className="underline font-bold text-[#9eb8d6]">
+              <a href="https://www.linkedin.com/in/k2maan/">LinkedIn</a>
+            </span>.
+          </p>
+        </div>
+        <div className="flex justify-center items-center relative">
+
+          <Image
+            src={aboutImg}
+            alt="Ketuman Vishwakarma"
+            quality={95}
+            priority
+            className="w-[200px] mb-20 lg:mb-0 lg:w-[500px] rounded-xl"
+          />
+        </div>
       </section>
     </div>
   );
