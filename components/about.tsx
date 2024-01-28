@@ -16,12 +16,11 @@ export default function About() {
         <div className="m-5 ml-2">
           <p className="mb-5 text-lg lg:text-left">
             Currently employed at{" "}
-            <span className="underline font-bold text-[#d6af9e]">
-              <a href="https://hotwax.co">HotWax Commerce</a>
+            <span className="underline font-bold text-[#6cbcf6]">
+              <a href="https://bluecore.com">Bluecore</a>
             </span>{" "}
-            as a <span className="font-bold">Software Engineer</span>, working
-            with the Frontend team, creating and enhancing their Shopify OMS
-            product suite.
+            as a <span className="font-bold">Forward Deployed Engineer</span>, working
+            with the FDE team, managing product integrations on client side.
           </p>
 
           <p className="mb-5 text-lg lg:text-left">
