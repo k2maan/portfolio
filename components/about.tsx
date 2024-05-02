@@ -20,7 +20,7 @@ export default function About() {
               <a href="https://bluecore.com">Bluecore</a>
             </span>{" "}
             as a <span className="font-bold">Forward Deployed Engineer</span>, working
-            with the FDE team, managing product integrations on client side.
+            with the FDE team, managing product integrations for numerous clients.
           </p>
 
           <p className="mb-5 text-lg lg:text-left">
