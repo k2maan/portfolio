@@ -32,7 +32,7 @@ export default function About() {
           <p className="mb-6 text-lg lg:text-left">
             When I'm not coding, I'm either immersed in{" "}
             <span className="font-bold">movies and animes</span>, capturing{" "}
-            <span className="font-bold">fashioon vids and self-portraits</span>, or reading{" "}
+            <span className="font-bold">fashion vids and self-portraits</span>, or reading{" "}
             <span className="font-bold">something</span>.
           </p>
 
