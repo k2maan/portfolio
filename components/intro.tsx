@@ -41,7 +41,7 @@ export default function Intro() {
       >
         <span className="font-bold uppercase">Ketuman Vishwakarma</span>
         <span className="text-center italic text-sm sm:text-xl underline decoration-[#45578d]">
-          FDE / Solutions Engineer / Software Engineer
+          Forward Deployed Engineer / Solutions Engineer
         </span>
       </motion.h1>
 
