@@ -5,7 +5,6 @@ import { Archivo } from "next/font/google";
 import Mark from "@/components/mark";
 import Spotlight from "@/components/spotlight";
 import Cursor from "@/components/cursor";
-import Thread from "@/components/thread";
 import ThemeToggle from "@/components/theme-toggle";
 import "./globals.css";
 
@@ -52,7 +51,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </nav>
         </header>
         <main id="main">{children}</main>
-        <Thread />
         <Spotlight />
         <Cursor />
         <footer className="site-footer">

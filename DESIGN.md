@@ -27,7 +27,7 @@ data labels, arrows trailing every link, and em dashes in copy.
 | `--muted`    | `#6e6e6e` | `#9a9a9a` | Captions, secondary text                     |
 | `--hairline` | `#dedede` | `#2a2a2a` | Image frames, row dividers                   |
 | `--plate`    | `#f1f1f1` | `#111111` | Behind images while they load                |
-| `--signal`   | `#d3241c` | `#ff4a3d` | The dot in the K mark, the full stop after the name and each section heading, the spotlight and the circle cursor, live and status dots, the strike through old figures, the role dot in the hero strip, the thread tip, focus ring, text selection, link underline on hover. All of these are the same circle, at different sizes. |
+| `--signal`   | `#d3241c` | `#ff4a3d` | The dot in the K mark, the full stop after the name and each section heading, the spotlight and the circle cursor, live and status dots, the strike through old figures, the role dot in the hero strip, focus ring, text selection, link underline on hover. All of these are the same circle, at different sizes. |
 
 Every image shows in black and white and turns to its original color when you hover it, or tap
 it on a touch screen: the portrait in Contact (`public/profile-2.jpg`, color, cropped 4:5) and the project
@@ -64,10 +64,10 @@ Figures use `font-variant-numeric: tabular-nums` where they line up in columns.
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│ K.                              Work  Projects  Contact    │ │
-│                                              ┌──────────┐  │ │  ← thread, red tip
-│ I embed with customers' … (small kicker)     │ dot      │  │ │
-│ KETUMAN                                      │ portrait │  │ │
+│ K.                              Work  Projects  Contact  ◐   │
+│                                              ┌──────────┐    │
+│ I embed with customers' … (small kicker)     │ dot      │    │
+│ KETUMAN                                      │ portrait │    │
 │ VISHWAKARMA.                                 └──────────┘    │
 │ ─────────────────────────────────────────────────────────── │
 │ • Role at Bluecore   Outside work, …    Copy email GitHub In │
@@ -102,10 +102,6 @@ baseline when there's room, otherwise underneath, flush right on desktop.
 Work stories are number rows with no boxes or chips: the figure (counting into view) on the
 left, the title, two sentences and the stack as a caption on the right, ink rules between rows.
 Experience is plain lines: period, role with the company linked, note.
-
-A thread (`components/thread.tsx`) runs the length of the page behind everything: down one edge,
-across in the space above each heading, down the other. It draws itself as you scroll, with a red
-dot at the tip 65% of the way down the screen.
 
 The header ends with a light/dark switch (`components/theme-toggle.tsx`): a circle, half ink. It
 sets `data-theme` on `<html>`, which the tokens follow, and remembers the choice; until someone

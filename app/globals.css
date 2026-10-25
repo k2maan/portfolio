@@ -839,37 +839,48 @@ main {
   }
 }
 
-/* Spotlight (components/spotlight.tsx): over the hero name, the hero lead and the section headings,
-   a solid red circle follows the pointer, painted only inside the letters. The text is painted by
-   its own background, clipped to the glyphs: ink everywhere, with a red disc at the pointer whose
-   radius grows from 0 on hover and shrinks back on leave. */
+/* Spotlight (components/spotlight.tsx): over the hero name and the section headings, a solid red
+   circle follows the pointer, painted only inside the letters. The text is painted by its own
+   background, clipped to the glyphs: a red disc at the pointer over a solid ink layer. The disc's
+   radius grows from 0 on hover and shrinks back on leave.
+
+   Mouse and trackpad only. Touch screens never get the effect, so they keep plain text: a clipped
+   background that fails to paint would leave the letters transparent (which is what hid the name
+   and headings on iPhone). The disc is drawn with color stops rather than a zero-size circle,
+   which Safari can treat as invalid. */
 @property --spot-r {
   syntax: "<length>";
   inherits: false;
   initial-value: 0px;
 }
 
-[data-spot] {
-  --spot-r: 0px;
-  background: radial-gradient(
-    circle var(--spot-r) at var(--spot-x, 50%) var(--spot-y, 50%),
-    var(--signal) 100%,
-    var(--ink) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  transition: --spot-r 0.35s cubic-bezier(0.2, 0.7, 0.1, 1);
-}
+@media (hover: hover) and (pointer: fine) {
+  [data-spot] {
+    --spot-r: 0px;
+    background-image:
+      radial-gradient(
+        circle at var(--spot-x, 50%) var(--spot-y, 50%),
+        var(--signal) var(--spot-r),
+        transparent calc(var(--spot-r) + 0.5px)
+      ),
+      linear-gradient(var(--ink), var(--ink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    transition: --spot-r 0.35s cubic-bezier(0.2, 0.7, 0.1, 1);
+  }
 
-[data-spot].is-spot {
-  --spot-r: 72px;
+  [data-spot].is-spot {
+    --spot-r: 72px;
+  }
 }
 
 /* Inherit the text color in high-contrast modes, where backgrounds are dropped */
 @media (forced-colors: active) {
   [data-spot] {
     background: none;
+    -webkit-text-fill-color: currentColor;
     color: CanvasText;
   }
 }
@@ -1053,34 +1064,6 @@ main {
 .icon-link svg {
   width: 17px;
   height: 17px;
-}
-
-/* The thread (components/thread.tsx): one hairline down the page, drawn as you scroll, with a red
-   dot at its tip. It sits behind everything and never takes the pointer. */
-body {
-  position: relative;
-  /* The thread spans the page; never let it cause sideways scrolling (clip keeps sticky working) */
-  overflow-x: clip;
-}
-
-.thread {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  overflow: visible;
-  pointer-events: none;
-}
-
-.thread path {
-  fill: none;
-  stroke: color-mix(in srgb, var(--ink) 38%, transparent);
-  stroke-width: 1.25;
-  stroke-linecap: round;
-}
-
-.thread circle {
-  fill: var(--signal);
 }
 
 @media (prefers-reduced-motion: reduce) {
