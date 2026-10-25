@@ -1,25 +1,1102 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+/* Tokens. See DESIGN.md for what each one is for. */
+:root {
+  --paper: #ffffff;
+  --ink: #0b0b0b;
+  --muted: #6e6e6e;
+  --hairline: #dedede;
+  --plate: #f1f1f1;
+  --signal: #d3241c;
 
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
+  --gutter: 16px;
+  --max: 1320px;
+  --display: 62;
+  /* One size for the hero name and every section heading: VISHWAKARMA and its full stop (about
+     5.5em) fill the content width */
+  --poster: calc((min(100vw, var(--max)) - 2 * var(--gutter)) / 5.7);
+
+  color-scheme: light;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #333;
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #000000;
+    --ink: #f2f2f2;
+    --muted: #9a9a9a;
+    --hairline: #2a2a2a;
+    --plate: #111111;
+    --signal: #ff4a3d;
+    color-scheme: dark;
+  }
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #555;
-  border-radius: 5px;
+:root[data-theme="dark"] {
+  --paper: #000000;
+  --ink: #f2f2f2;
+  --muted: #9a9a9a;
+  --hairline: #2a2a2a;
+  --plate: #111111;
+  --signal: #ff4a3d;
+  color-scheme: dark;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #444;
+@media (min-width: 860px) {
+  :root {
+    --gutter: 32px;
+  }
+}
+
+/* Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  font-variation-settings: "wdth" 100;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 0.2s;
+}
+
+a:hover {
+  text-decoration-color: var(--signal);
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--signal);
+  color: #fff;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  font-variation-settings: "wdth" var(--display);
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+}
+
+.caption {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.skip {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 8px 12px;
+  z-index: 10;
+}
+
+.skip:focus {
+  top: 12px;
+}
+
+/* Header and footer */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 10px var(--gutter);
+  background: var(--paper);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.site-header a {
+  text-decoration-color: transparent;
+}
+
+.site-header a:hover {
+  text-decoration-color: var(--signal);
+}
+
+.site-home {
+  display: block;
+  padding: 4px 0;
+}
+
+.site-header nav a {
+  padding: 10px 0;
+}
+
+/* The mark: K with the signal dot sitting on the baseline like a full stop, in the theme's ink.
+   app/icon.svg draws the same letter and proportions for the tab (dot 0.26em, gap 0.03em). */
+.mark {
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--ink);
+  font-size: 40px;
+  font-weight: 800;
+  font-variation-settings: "wdth" 62;
+  line-height: 0.8;
+  letter-spacing: 0;
+}
+
+.mark-dot {
+  width: 0.26em;
+  height: 0.26em;
+  margin-left: 0.03em;
+  border-radius: 50%;
+  background: var(--signal);
+}
+
+@media (max-width: 420px) {
+  .site-header {
+    font-size: 14px;
+  }
+
+  .site-header nav {
+    gap: 16px;
+  }
+}
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Light/dark switch (components/theme-toggle.tsx), the last item in the nav */
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin-right: -9px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.theme-toggle:hover {
+  color: var(--signal);
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 28px var(--gutter) 40px;
+  border-top: 1px solid var(--hairline);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+main {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Hero, set like a cover. A small kicker line, the name at poster size, then a credit strip along
+   one rule: role, the outside-work line, the links. The dot portrait (components/dot-portrait.tsx)
+   sits right of KETUMAN, just above VISHWAKARMA. On phones it all stacks, portrait first. */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  padding: 40px 0 28px;
+}
+
+.hero-lead {
+  font-size: clamp(16px, 1.3vw, 18px);
+  font-weight: 500;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.hero-name {
+  grid-column: 1 / -1;
+  font-size: var(--poster);
+  font-weight: 800;
+  line-height: 0.84;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  /* Only the words take the pointer, so the spotlight starts over letters, not the empty row */
+  pointer-events: none;
+}
+
+.hero-name .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.04em;
+}
+
+.hero-name .line > span {
+  display: inline-block;
+  vertical-align: top;
+  pointer-events: auto;
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) both;
+}
+
+.hero-name .line + .line > span {
+  animation-delay: 0.12s;
+}
+
+.hero-meta {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.hero-meta > * + * {
+  margin-top: 10px;
+}
+
+.hero-role {
+  font-weight: 600;
+}
+
+.hero-role::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 9px;
+  border-radius: 50%;
+  background: var(--signal);
+  vertical-align: 0.12em;
+}
+
+.hero-aside {
+  color: var(--muted);
+}
+
+/* Copy email, GitHub, LinkedIn: plain links with small icons. The email one is a button that copies. */
+.text-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-weight: 600;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+  transition: text-decoration-color 0.2s;
+}
+
+.text-link:hover {
+  text-decoration-color: var(--signal);
+}
+
+.text-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+.hero-art {
+  color: var(--ink);
+}
+
+.hero-art canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 860px) {
+  .hero {
+    grid-template-rows: 1fr auto auto auto;
+    min-height: calc(100svh - 100px);
+    /* Portrait width: 31% up to 380px, and never taller than the room between the header and its
+       bottom edge (--art-room, measured by the component), so the head is never under the header */
+    --art-w: min(31%, 380px, calc(var(--art-room, 9999px) * 540 / 640));
+  }
+
+  .hero-name {
+    grid-row: 3;
+  }
+
+  .hero-lead {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-bottom: 26px;
+    /* As wide as it can go without reaching the portrait */
+    max-width: calc(100% - var(--art-w) - 48px);
+  }
+
+  .hero-meta {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top: 1px solid var(--ink);
+  }
+
+  .hero-meta > * + * {
+    margin-top: 0;
+  }
+
+  .hero-role {
+    grid-column: 1 / 4;
+  }
+
+  .hero-aside {
+    grid-column: 4 / 8;
+  }
+
+  .text-links {
+    grid-column: 8 / -1;
+    justify-content: flex-end;
+  }
+
+  .hero-art {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    /* Bottom edge just above VISHWAKARMA, whatever the strip's height (set by the component) */
+    bottom: calc(28px + var(--strip-h, 72px) + 0.84 * var(--poster) + 0.08 * var(--poster) - 24px);
+    width: var(--art-w);
+    aspect-ratio: 540 / 640;
+  }
+}
+
+@media (max-width: 859px) {
+  .hero {
+    row-gap: 28px;
+    padding-top: 28px;
+  }
+
+  .hero-art {
+    grid-column: 4 / -1;
+    grid-row: 1;
+    aspect-ratio: 540 / 640;
+    margin-bottom: -8px;
+  }
+
+  .hero-name {
+    grid-row: 2;
+  }
+
+  .hero-lead,
+  .hero-meta {
+    grid-column: 1 / -1;
+  }
+
+  .hero-lead {
+    grid-row: 3;
+  }
+
+  .hero-meta {
+    grid-row: 4;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* Sections */
+.section {
+  padding-top: clamp(110px, 14vw, 200px);
+}
+
+/* Poster heading: the same size as the hero name, uppercase, ending on a red full stop. The intro
+   sits beside it on its baseline when there's room, otherwise underneath; either way it lines up
+   to the right edge on desktop. */
+.poster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  column-gap: 32px;
+  row-gap: 14px;
+}
+
+.poster h2 {
+  font-size: var(--poster);
+  font-weight: 800;
+  line-height: 0.84;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.poster p {
+  max-width: 24em;
+  padding-bottom: 0.4em;
+  color: var(--muted);
+}
+
+@media (min-width: 860px) {
+  .poster p {
+    margin-left: auto;
+    text-align: right;
+  }
+}
+
+/* Work as number rows: no boxes, no chips. One ink rule between rows. */
+.rows {
+  margin-top: 48px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  row-gap: 18px;
+  padding: 40px 0 44px;
+  border-top: 1px solid var(--ink);
+}
+
+.row:last-child {
+  border-bottom: 1px solid var(--ink);
+}
+
+.fig {
+  grid-column: 1 / 7;
+}
+
+.fig .caption {
+  display: block;
+  margin-top: 12px;
+}
+
+.figure {
+  display: block;
+  font-size: calc(var(--poster) * 0.62);
+  font-weight: 800;
+  font-variation-settings: "wdth" var(--display);
+  line-height: 0.84;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The old value, struck through in red. The strike is drawn as a line so it can sweep across
+   when the figure counts (components/count-figure.tsx); it's simply there without scripts. */
+.figure-from {
+  position: relative;
+  display: inline-block;
+  margin-right: 0.16em;
+  font-size: 0.42em;
+  color: var(--muted);
+  vertical-align: 0.12em;
+}
+
+.figure-from::after {
+  content: "";
+  position: absolute;
+  left: -0.04em;
+  right: -0.04em;
+  top: 52%;
+  height: 0.07em;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.55, 0.1, 0.3, 1);
+}
+
+.figure-from.is-struck::after {
+  transform: none;
+}
+
+.story {
+  grid-column: 7 / -1;
+  align-self: end;
+  max-width: 34em;
+}
+
+.story h3 {
+  font-size: clamp(26px, 2.4vw, 34px);
+  line-height: 0.95;
+}
+
+.story p {
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+.story .stack {
+  margin-top: 14px;
+}
+
+/* Experience as plain lines: period, role and company, note */
+.exp {
+  margin-top: 96px;
+}
+
+.exp h3 {
+  margin-bottom: 18px;
+  font-size: clamp(30px, 3vw, 42px);
+  line-height: 1;
+}
+
+.exp li {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  row-gap: 4px;
+  padding: 18px 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.exp li:last-child {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.exp .when {
+  grid-column: 1 / 3;
+  font-variant-numeric: tabular-nums;
+}
+
+.exp .when.now {
+  color: var(--ink);
+}
+
+.exp .when.now::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--signal);
+  vertical-align: 0.1em;
+}
+
+.exp .what {
+  grid-column: 3 / 7;
+  font-weight: 600;
+}
+
+.exp .note {
+  grid-column: 7 / -1;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+@media (max-width: 859px) {
+  .fig,
+  .story {
+    grid-column: 1 / -1;
+  }
+
+  .figure {
+    font-size: calc(var(--poster) * 0.9);
+  }
+
+  .exp {
+    margin-top: 72px;
+  }
+
+  .exp .when,
+  .exp .what,
+  .exp .note {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Project plates */
+.plate-image {
+  display: block;
+  background: var(--plate);
+  outline: 1px solid var(--hairline);
+  outline-offset: -1px;
+  overflow: hidden;
+}
+
+/* Project images and the portrait are black and white until you hover them, or tap them on a
+   touch screen (the card and portrait take focus on tap, so the color stays) */
+.plate-image img,
+.portrait img {
+  filter: grayscale(1);
+  transition:
+    filter 0.5s ease,
+    transform 0.6s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+.plate-image img {
+  width: 100%;
+}
+
+.plate:hover .plate-image img,
+.plate:focus-within .plate-image img,
+.portrait:hover img,
+.portrait:focus img {
+  filter: none;
+}
+
+.plate:hover .plate-image img,
+.plate:focus-within .plate-image img {
+  transform: scale(1.015);
+}
+
+.plate h3 {
+  font-size: clamp(34px, 3.4vw, 48px);
+  font-weight: 800;
+}
+
+.plate h3 a {
+  text-decoration: none;
+}
+
+.plate h3 a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--signal);
+  text-decoration-thickness: 2px;
+}
+
+.plate-caption .caption {
+  margin-top: 10px;
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 12px;
+  color: var(--ink);
+}
+
+.live::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--signal);
+}
+
+.plate-summary {
+  margin-top: 14px;
+  max-width: 34em;
+}
+
+.plate-links {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 6px;
+  margin-top: 16px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Two featured plates: image wide on the left, caption in the right margin */
+.feature {
+  padding-top: 56px;
+}
+
+.feature .plate {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  row-gap: 22px;
+}
+
+.feature-left .plate-image {
+  grid-column: 1 / 9;
+}
+
+.feature-left .plate-caption {
+  grid-column: 9 / -1;
+  align-self: end;
+}
+
+.feature-right {
+  padding-top: 120px;
+}
+
+.feature-right .plate-image {
+  grid-column: 1 / 9;
+}
+
+.feature-right .plate-caption {
+  grid-column: 9 / -1;
+  align-self: end;
+}
+
+@media (max-width: 859px) {
+  .feature-right {
+    padding-top: 72px;
+  }
+
+  .feature-left .plate-image,
+  .feature-left .plate-caption,
+  .feature-right .plate-image,
+  .feature-right .plate-caption {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+}
+
+/* Older projects in an even grid, two across (four projects make two full rows), images cropped
+   to one shape so the rows line up */
+.plates {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: 72px;
+  padding-top: 120px;
+}
+
+.plates .plate-image img {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+}
+
+.plates .plate-caption {
+  margin-top: 20px;
+}
+
+.plates .plate h3 {
+  font-size: clamp(28px, 2.4vw, 34px);
+}
+
+@media (max-width: 599px) {
+  .plates {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 56px;
+    padding-top: 80px;
+  }
+}
+
+/* Spotlight (components/spotlight.tsx): over the hero name, the hero lead and the section headings,
+   a solid red circle follows the pointer, painted only inside the letters. The text is painted by
+   its own background, clipped to the glyphs: ink everywhere, with a red disc at the pointer whose
+   radius grows from 0 on hover and shrinks back on leave. */
+@property --spot-r {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+[data-spot] {
+  --spot-r: 0px;
+  background: radial-gradient(
+    circle var(--spot-r) at var(--spot-x, 50%) var(--spot-y, 50%),
+    var(--signal) 100%,
+    var(--ink) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: --spot-r 0.35s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+[data-spot].is-spot {
+  --spot-r: 72px;
+}
+
+/* Inherit the text color in high-contrast modes, where backgrounds are dropped */
+@media (forced-colors: active) {
+  [data-spot] {
+    background: none;
+    color: CanvasText;
+  }
+}
+
+/* The name and every section heading end on a red full stop, the same circle as the dot in the
+   K. mark (0.26em there; a touch smaller here) */
+.poster h2::after,
+.hero-name .stop::after {
+  content: "";
+  display: inline-block;
+  width: 0.2em;
+  height: 0.2em;
+  margin-left: 0.05em;
+  border-radius: 50%;
+  background: var(--signal);
+}
+
+/* The circle cursor (components/cursor.tsx). One 88px circle, scaled to suit what's under the
+   pointer: gone, a full stop over links, the full circle with "Open" over project images. */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.cursor-circle {
+  position: absolute;
+  left: -44px;
+  top: -44px;
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--signal);
+  transform: scale(0);
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+.cursor[data-state="link"] .cursor-circle {
+  transform: scale(0.1);
+}
+
+.cursor[data-state="open"] .cursor-circle {
+  transform: scale(1);
+}
+
+.cursor-label {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.cursor[data-state="open"] .cursor-label {
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+
+.has-cursor .plate-image {
+  cursor: none;
+}
+
+/* Contact */
+.contact {
+  padding-bottom: 96px;
+}
+
+/* The address with the portrait beside it, smaller than it was in the hero */
+.contact-body {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  row-gap: 48px;
+  align-items: end;
+  margin-top: 48px;
+}
+
+.contact-main {
+  grid-column: 1 / 9;
+  /* The address sizes itself to this column, so it fits beside the portrait at any width */
+  container-type: inline-size;
+}
+
+.contact-portrait {
+  grid-column: 10 / -1;
+  background: var(--plate);
+}
+
+.contact-portrait img {
+  width: 100%;
+}
+
+@media (max-width: 859px) {
+  .contact-main,
+  .contact-portrait {
+    grid-column: 1 / -1;
+  }
+
+  .contact-portrait {
+    order: -1;
+  }
+
+  .contact-portrait img {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 20%;
+  }
+}
+
+/* The address set huge: a button that copies it, styled like the big link it replaced */
+.contact-copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 20px;
+  row-gap: 10px;
+}
+
+.contact-email {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  cursor: pointer;
+  transition: text-decoration-color 0.2s;
+  /* The address is about 8.7em wide: fill the column, up to 124px */
+  font-size: min(124px, calc(100cqi / 8.9));
+  font-weight: 800;
+  font-variation-settings: "wdth" var(--display);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-decoration-thickness: 0.04em;
+  text-underline-offset: 0.12em;
+  overflow-wrap: anywhere;
+}
+
+.contact-email:hover {
+  text-decoration-color: var(--signal);
+}
+
+.copy-status:empty {
+  display: none;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Outlined buttons under the address */
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 0 15px;
+  border: 1px solid var(--ink);
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.icon-link:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.icon-link svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* The thread (components/thread.tsx): one hairline down the page, drawn as you scroll, with a red
+   dot at its tip. It sits behind everything and never takes the pointer. */
+body {
+  position: relative;
+  /* The thread spans the page; never let it cause sideways scrolling (clip keeps sticky working) */
+  overflow-x: clip;
+}
+
+.thread {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.thread path {
+  fill: none;
+  stroke: color-mix(in srgb, var(--ink) 38%, transparent);
+  stroke-width: 1.25;
+  stroke-linecap: round;
+}
+
+.thread circle {
+  fill: var(--signal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.plate:focus,
+.portrait:focus {
+  outline: none;
 }
