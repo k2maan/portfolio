@@ -759,7 +759,7 @@ main {
   font-weight: 500;
 }
 
-/* Two featured plates: image wide on the left, caption in the right margin */
+/* Featured plates (the current projects): image wide on the left, caption in the right margin */
 .feature {
   padding-top: 56px;
 }

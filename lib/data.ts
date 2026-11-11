@@ -1,6 +1,7 @@
 import type { StaticImageData } from "next/image";
 import perk from "@/public/perk.png";
 import gittingOverIt from "@/public/gitting-over-it.png";
+import diyaDuty from "@/public/diya-duty.png";
 import indigo from "@/public/indigo.jpg";
 import easyResume from "@/public/easyResume.jpg";
 import moviehut from "@/public/moviehut.jpg";
@@ -49,9 +50,9 @@ export const workStories: WorkStory[] = [
   },
   {
     figure: "90%",
-    figureLabel: "of the FDE team uses it",
+    figureLabel: "of the FDE team adopted it",
     title: "Chrono DevTool",
-    body: "An internal VS Code extension with a guided job builder and one-click testing. Setting up a client pipeline now takes half as long, and almost the whole team switched to it.",
+    body: "An internal VS Code extension with a guided job builder and one-click testing. It halved the time it took to set up a client pipeline, and almost the whole team switched to it.",
     stack: ["TypeScript", "VS Code extension API"],
   },
 ];
@@ -83,13 +84,6 @@ export const experience: Role[] = [
     org: "HotWax Commerce",
     url: "https://www.hotwax.co/",
     note: "Features in React, Vue and Ionic for an order management system, and a single sign-on service shared across its apps. Ran Hacktoberfest for students in 2022 and 2023.",
-  },
-  {
-    period: "Alongside",
-    role: "Instructor",
-    org: "FDE Academy",
-    url: "https://fde.academy/",
-    note: "Two workshops on what forward deployed engineers actually do, for 110 attendees, and a seat on the expert Q&A panel.",
   },
 ];
 
@@ -134,6 +128,18 @@ export const products: Product[] = [
       { label: "Chrome Web Store", href: "https://chromewebstore.google.com/detail/eoobkecnlbiomngaaebjjlmhhckonhho" },
       { label: "Website", href: "https://perkedup.vercel.app" },
     ],
+  },
+  {
+    slug: "diya-duty",
+    name: "Diya Duty",
+    kind: "Browser game",
+    year: 2026,
+    live: true,
+    image: diyaDuty,
+    imageAlt: "Diya Duty: Dadi asks “Kaam kya karte ho, exactly?” in the Puja Room, and the player answers “Vibe coder hoon, Dadi…”",
+    summary:
+      "A Diwali party game about dodging your relatives’ questions. Walk through five rooms of a family party, light every diya, and get past Bua, Mausi and Rishta Aunty before they ask about your package. Plays in your phone’s browser, with no app or login.",
+    links: [{ label: "Play it", href: "https://diyaduty.pages.dev/" }],
   },
   {
     slug: "indigo",

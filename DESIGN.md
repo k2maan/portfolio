@@ -115,7 +115,7 @@ portrait photo or crop changes.
 Links to anything outside the site open in a new tab. Company names link to the company. Both
 emails (the hero link and the big address in Contact) copy the address when clicked.
 
-Plates are square-cornered with a 1px hairline frame and no shadow. The two current projects get
+Plates are square-cornered with a 1px hairline frame and no shadow. The three current projects get
 wide plates with the caption beside them; the four older projects sit in an even grid (two
 across, one on phones) with images cropped to 16:10 so the rows line up. Every
 project gets its image, a caption, a description and links. There are no project pages: the

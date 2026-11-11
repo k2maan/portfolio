@@ -8,7 +8,9 @@ import CountFigure from "@/components/count-figure";
 import DotPortrait from "@/components/dot-portrait";
 
 export default function Home() {
-  const [first, second, ...rest] = products;
+  // The current projects get the large plates; older ones sit in the grid below
+  const featured = products.slice(0, 3);
+  const rest = products.slice(3);
 
   return (
     <>
@@ -112,12 +114,11 @@ export default function Home() {
           <p>Things I’ve designed, built and shipped on my own.</p>
         </div>
 
-        <div className="feature feature-left">
-          <ProductPlate product={first} size="feature" />
-        </div>
-        <div className="feature feature-right">
-          <ProductPlate product={second} size="feature" />
-        </div>
+        {featured.map((product, i) => (
+          <div key={product.slug} className={`feature ${i === 0 ? "feature-left" : "feature-right"}`}>
+            <ProductPlate product={product} size="feature" />
+          </div>
+        ))}
 
         <div className="plates">
           {rest.map((product) => (
