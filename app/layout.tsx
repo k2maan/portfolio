@@ -1,22 +1,25 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import Script from "next/script";
-import { Archivo } from "next/font/google";
-import Mark from "@/components/mark";
-import Spotlight from "@/components/spotlight";
-import Cursor from "@/components/cursor";
+import { Funnel_Display, Funnel_Sans } from "next/font/google";
 import ThemeToggle from "@/components/theme-toggle";
 import "./globals.css";
 
-const archivo = Archivo({
+const display = Funnel_Display({
   subsets: ["latin"],
-  axes: ["wdth"],
-  variable: "--font-archivo",
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const text = Funnel_Sans({
+  subsets: ["latin"],
+  variable: "--font-text",
   display: "swap",
 });
 
 const description =
-  "Forward Deployed Engineer at Bluecore. I embed with customers’ engineering teams, get our product live in their stack and keep it running in production. Outside work, I build things of my own.";
+  "Forward Deployed Engineer at Bluecore, helping large retailers get our product live and keep it working. On my own time I build small products.";
 
 export const metadata: Metadata = {
   // The live address, so link previews get full image URLs
@@ -27,10 +30,17 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", creator: "@k2maandotdev" },
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#d6d8fc" },
+    { media: "(prefers-color-scheme: dark)", color: "#cfd1f9" },
+  ],
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     // The head script sets data-theme before React loads, so the attribute differs from the server's
-    <html lang="en" className={archivo.variable} suppressHydrationWarning>
+    <html lang="en" className={`${display.variable} ${text.variable}`} suppressHydrationWarning>
       <body>
         {/* Apply a saved light/dark choice before the page hydrates, so it never flashes */}
         <Script id="theme" strategy="beforeInteractive">
@@ -40,22 +50,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <header className="site-header">
-          <Link href="/" className="site-home" aria-label="Ketuman, home">
-            <Mark />
+          <Link href="/" className="site-home">
+            k2maan
           </Link>
           <nav aria-label="Main">
-            <Link href="/#work">Work</Link>
             <Link href="/#projects">Projects</Link>
+            <Link href="/#work">Work</Link>
             <Link href="/#contact">Contact</Link>
             <ThemeToggle />
           </nav>
         </header>
         <main id="main">{children}</main>
-        <Spotlight />
-        <Cursor />
-        <footer className="site-footer">
-          <a href="#main">Back to top</a>
-        </footer>
       </body>
     </html>
   );

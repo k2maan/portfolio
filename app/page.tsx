@@ -1,164 +1,143 @@
 import Image from "next/image";
-import portrait from "@/public/profile-2.jpg";
-import { bluecoreUrl, contact, experience, products, workStories } from "@/lib/data";
-import ProductPlate from "@/components/product-plate";
+import portrait from "@/public/portrait-square.jpg";
+import { bluecoreUrl, contact, experience, products, timeline, workStories } from "@/lib/data";
 import CopyEmail from "@/components/copy-email";
+import ShippedStrip from "@/components/shipped-strip";
+import ProjectIndex from "@/components/project-index";
 import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
-import CountFigure from "@/components/count-figure";
-import DotPortrait from "@/components/dot-portrait";
 
 export default function Home() {
-  // The current projects get the large plates; older ones sit in the grid below
-  const featured = products.slice(0, 3);
-  const rest = products.slice(3);
-
   return (
     <>
-      <section className="hero" aria-labelledby="hero-name">
-        <h1 id="hero-name" className="hero-name">
-          <span className="line">
-            <span data-spot="name">Ketuman</span>
-          </span>
-          <span className="line">
-            <span data-spot="name" className="stop">
-              Vishwakarma
-            </span>
-          </span>
-        </h1>
-        <p className="hero-lead">
-          I embed with customers’ engineering teams, build whatever it takes to get our product live in their stack, and
-          keep it running in production.
-        </p>
-        {/* The credit strip: role, the outside-work line, and the links, along one rule */}
-        <div className="hero-meta">
-          <p className="hero-role">
-            Forward Deployed Engineer at{" "}
+      <section className="intro" aria-labelledby="intro-name">
+        <div className="intro-inner">
+          <div className="intro-head">
+            <h1 id="intro-name">Ketuman Vishwakarma</h1>
+            <Image
+              className="intro-portrait"
+              src={portrait}
+              alt="Ketuman, smiling, in a black jacket and shirt"
+              sizes="(min-width: 860px) 176px, 96px"
+              priority
+            />
+          </div>
+          <p className="intro-lead">
+            I’m a Forward Deployed Engineer at{" "}
             <a href={bluecoreUrl} target="_blank" rel="noopener noreferrer">
               Bluecore
             </a>
+            , helping large retailers get our product live and keep it working. On my own time I build small products,
+            and I’m moving on to more serious ones.
           </p>
-          <p className="hero-aside">Outside work, I build things of my own, from the first sketch to the launch.</p>
-          <p className="text-links">
-            <CopyEmail email={contact.email} />
-            <a className="text-link" href={contact.github} target="_blank" rel="noopener noreferrer">
-              <GitHubIcon />
-              GitHub
-            </a>
-            <a className="text-link" href={contact.linkedin} target="_blank" rel="noopener noreferrer">
-              <LinkedInIcon />
-              LinkedIn
-            </a>
-            <a className="text-link" href={contact.x} target="_blank" rel="noopener noreferrer">
-              <XIcon />X
-            </a>
-          </p>
+          <ul className="intro-links">
+            <li>
+              <CopyEmail email={contact.email} />
+            </li>
+            <li>
+              <a href={contact.github} target="_blank" rel="noopener noreferrer">
+                <GitHubIcon />
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href={contact.linkedin} target="_blank" rel="noopener noreferrer">
+                <LinkedInIcon />
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href={contact.x} target="_blank" rel="noopener noreferrer">
+                <XIcon />X
+              </a>
+            </li>
+          </ul>
+          <ShippedStrip products={products} timeline={timeline} />
         </div>
-        <DotPortrait src={portrait.src} />
       </section>
 
-      <section id="work" className="section" aria-labelledby="work-title">
-        <div className="poster">
-          <h2 id="work-title" data-spot>
-            Work
-          </h2>
-          <p>
-            I have been an FDE for enterprise clients across several regions, from scoping to production. A few things
-            I’ve built there:
-          </p>
+      <section id="projects" className="section projects" aria-labelledby="projects-title">
+        <div className="section-head">
+          <h2 id="projects-title">Projects</h2>
+          <p className="section-lead">Products I’ve designed and built on my own.</p>
         </div>
+        <ProjectIndex products={products} />
+      </section>
 
-        <ol className="rows">
-          {workStories.map((story) => (
-            <li key={story.title} className="row">
-              <p className="fig">
-                <CountFigure figure={story.figure} from={story.from} />
-                <span className="caption">{story.figureLabel}</span>
-              </p>
-              <div className="story">
-                <h3>{story.title}</h3>
-                <p>{story.body}</p>
-                <p className="caption stack">{story.stack.join(", ")}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
+      <section id="work" className="work" aria-labelledby="work-title">
+        <div className="work-inner">
+          <div className="section-head">
+            <h2 id="work-title">Work</h2>
+            <p className="section-lead">
+              At Bluecore I work directly with enterprise retail brands in the US, EU, UK, Japan and Canada, from scoping
+              an integration to supporting it in production.
+            </p>
+          </div>
 
-        <div className="exp">
-          <h3>Experience</h3>
-          <ol>
-            {experience.map((item) => (
-              <li key={item.org}>
-                <span className={`caption when${item.current ? " now" : ""}`}>{item.period}</span>
-                <span className="what">
-                  {item.role},{" "}
-                  {item.url ? (
-                    <a href={item.url} target="_blank" rel="noopener noreferrer">
-                      {item.org}
-                    </a>
-                  ) : (
-                    item.org
-                  )}
-                </span>
-                <span className="note">{item.note}</span>
+          <div className="stories">
+            {workStories.map((story) => (
+              <article key={story.title} className="story">
+                <div className="story-text">
+                  <h3>{story.title}</h3>
+                  <p className="story-body">{story.short}</p>
+                  {story.aside && <p className="story-aside">{story.aside}</p>}
+                </div>
+                <p className="story-fact">
+                  <span className="story-figure">{story.figure}</span>
+                  <span className="story-label">{story.figureLabel}</span>
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <h3 className="roles-title">Experience</h3>
+          <ol className="roles">
+            {experience.map((role) => (
+              <li key={role.org} className="role">
+                <div>
+                  <h3>
+                    {role.role},{" "}
+                    {role.url ? (
+                      <a href={role.url} target="_blank" rel="noopener noreferrer">
+                        {role.org}
+                      </a>
+                    ) : (
+                      role.org
+                    )}
+                  </h3>
+                  <p className="role-note">{role.note}</p>
+                </div>
+                <p className="role-when">{role.period}</p>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <section id="projects" className="section" aria-labelledby="projects-title">
-        <div className="poster">
-          <h2 id="projects-title" data-spot>
-            Projects
-          </h2>
-          <p>Things I’ve designed, built and shipped on my own.</p>
-        </div>
-
-        {featured.map((product, i) => (
-          <div key={product.slug} className={`feature ${i === 0 ? "feature-left" : "feature-right"}`}>
-            <ProductPlate product={product} size="feature" />
-          </div>
-        ))}
-
-        <div className="plates">
-          {rest.map((product) => (
-            <ProductPlate key={product.slug} product={product} size="small" />
-          ))}
-        </div>
-      </section>
-
-      <section id="contact" className="section contact" aria-labelledby="contact-title">
-        <div className="poster">
-          <h2 id="contact-title" data-spot>
-            Contact
-          </h2>
-          <p>Working on something that has to run inside someone else’s systems? Write to me.</p>
-        </div>
-        <div className="contact-body">
-          <div className="contact-main">
-            <CopyEmail email={contact.email} variant="large" />
-            <div className="contact-links">
-              <a className="icon-link" href={contact.github} target="_blank" rel="noopener noreferrer">
+      <section id="contact" className="contact" aria-labelledby="contact-title">
+        <div className="contact-inner">
+          <h2 id="contact-title">Say hello</h2>
+          <p>Working on something that has to run inside someone else’s systems, or just finished one of the games? Write to me.</p>
+          <CopyEmail email={contact.email} variant="large" />
+          <ul className="contact-links">
+            <li>
+              <a href={contact.github} target="_blank" rel="noopener noreferrer">
                 <GitHubIcon />
                 GitHub
               </a>
-              <a className="icon-link" href={contact.linkedin} target="_blank" rel="noopener noreferrer">
+            </li>
+            <li>
+              <a href={contact.linkedin} target="_blank" rel="noopener noreferrer">
                 <LinkedInIcon />
                 LinkedIn
               </a>
-              <a className="icon-link" href={contact.x} target="_blank" rel="noopener noreferrer">
+            </li>
+            <li>
+              <a href={contact.x} target="_blank" rel="noopener noreferrer">
                 <XIcon />X
               </a>
-            </div>
-          </div>
-          <div className="portrait contact-portrait" tabIndex={-1}>
-            <Image
-              src={portrait}
-              alt="Ketuman in a black jacket and shirt, arms crossed, smiling at the camera"
-              placeholder="blur"
-              sizes="(min-width: 860px) 25vw, 100vw"
-            />
-          </div>
+            </li>
+          </ul>
+          <p className="colophon">Set in Funnel Display and Funnel Sans. Built with Next.js, hosted on Vercel.</p>
         </div>
       </section>
     </>

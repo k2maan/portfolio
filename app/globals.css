@@ -1,47 +1,64 @@
-/* Tokens. See DESIGN.md for what each one is for. */
+/* Tokens. Lavender fields, plum-black ink, and a deeper lavender for hovers and focus. */
 :root {
   --paper: #ffffff;
-  --ink: #0b0b0b;
-  --muted: #6e6e6e;
-  --hairline: #dedede;
-  --plate: #f1f1f1;
-  --signal: #d3241c;
+  --ink: #1f1a26;
+  --muted: #5e5868;
+  --line: #e7e4ee;
+  --field: #d6d8fc;
+  --field-ink: #1f1a26;
+  --field-muted: #45417a;
+  --panel: #f0f0fd;
+  --accent: #4b45a0;
 
-  --gutter: 16px;
-  --max: 1320px;
-  --display: 62;
-  /* One size for the hero name and every section heading: VISHWAKARMA and its full stop (about
-     5.5em) fill the content width */
-  --poster: calc((min(100vw, var(--max)) - 2 * var(--gutter)) / 5.7);
+  /* The Work band: plum-black, with lavender as its light */
+  --band: #1f1a26;
+  --band-ink: #efedf6;
+  --band-muted: #aaa4b6;
+  --band-line: #3a3344;
+  --band-accent: #d6d8fc;
+
+  --gutter: 20px;
+  --wide: 1080px;
+  --radius: 14px;
+
+  --display: var(--font-display), "Helvetica Neue", Arial, sans-serif;
+  --text: var(--font-text), "Helvetica Neue", Arial, sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #000000;
-    --ink: #f2f2f2;
-    --muted: #9a9a9a;
-    --hairline: #2a2a2a;
-    --plate: #111111;
-    --signal: #ff4a3d;
+    --paper: #18151d;
+    --ink: #f1eff6;
+    --muted: #aaa4b6;
+    --line: #2d2834;
+    --field: #cfd1f9;
+    --panel: #23202a;
+    --accent: #cfd1f9;
+    --band: #221e29;
+    --band-line: #3a3344;
     color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --paper: #000000;
-  --ink: #f2f2f2;
-  --muted: #9a9a9a;
-  --hairline: #2a2a2a;
-  --plate: #111111;
-  --signal: #ff4a3d;
+  --paper: #18151d;
+  --ink: #f1eff6;
+  --muted: #aaa4b6;
+  --line: #2d2834;
+  --field: #cfd1f9;
+  --panel: #23202a;
+  --accent: #cfd1f9;
+  --band: #221e29;
+  --band-line: #3a3344;
   color-scheme: dark;
 }
 
-@media (min-width: 860px) {
+@media (min-width: 760px) {
   :root {
-    --gutter: 32px;
+    --gutter: 40px;
   }
 }
 
@@ -59,16 +76,22 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 72px;
+  scroll-padding-top: 24px;
+  scrollbar-color: color-mix(in srgb, var(--ink) 35%, transparent) var(--paper);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--text);
   font-size: 17px;
   line-height: 1.6;
-  font-variation-settings: "wdth" 100;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -79,29 +102,397 @@ img {
   height: auto;
 }
 
+ul,
+ol {
+  list-style: none;
+}
+
 a {
   color: inherit;
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-  transition: text-decoration-color 0.2s;
+  text-underline-offset: 0.22em;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  transition: text-decoration-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 
 a:hover {
-  text-decoration-color: var(--signal);
+  text-decoration-color: currentColor;
 }
 
-:focus-visible {
-  outline: 2px solid var(--signal);
-  outline-offset: 3px;
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
 }
 
 ::selection {
-  background: var(--signal);
-  color: #fff;
+  background: var(--field);
+  color: var(--field-ink);
 }
 
-.visually-hidden {
+.intro ::selection,
+.contact ::selection {
+  background: var(--field-ink);
+  color: var(--field);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.intro :focus-visible,
+.contact :focus-visible {
+  outline-color: var(--field-ink);
+}
+
+.work :focus-visible {
+  outline-color: var(--band-accent);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+svg {
+  flex: none;
+}
+
+.skip {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  z-index: 10;
+  padding: 8px 14px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.skip:focus {
+  top: 12px;
+}
+
+.button {
+  display: inline-block;
+  padding: 7px 16px;
+  border-radius: 4px;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s var(--ease);
+}
+
+.button:hover {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+/* Header: sits on the intro field */
+.site-header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: calc(var(--wide) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 20px var(--gutter);
+  color: var(--field-ink);
+  font-size: 15px;
+}
+
+.site-home {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.site-header nav a {
+  padding: 6px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.2s var(--ease);
+}
+
+.site-header nav a:hover,
+.theme-toggle:hover {
+  background: color-mix(in srgb, var(--field-ink) 9%, transparent);
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s var(--ease);
+}
+
+@media (max-width: 520px) {
+  .site-header nav a {
+    padding: 6px 7px;
+  }
+}
+
+/* Intro: the lavender field */
+.intro {
+  background: var(--field);
+  color: var(--field-ink);
+  padding: 96px var(--gutter) 36px;
+  overflow-x: clip;
+}
+
+.intro-inner {
+  max-width: var(--wide);
+  margin: 0 auto;
+}
+
+.intro-head {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.intro-portrait {
+  width: 96px;
+  height: 96px;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: 0 0 0 1.5px var(--paper);
+}
+
+/* Wide screens: the portrait sits to the right of the name, with room to breathe */
+@media (min-width: 860px) {
+  .intro-head {
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(96px, 14vw, 208px);
+  }
+
+  .intro-portrait {
+    width: 176px;
+    height: 176px;
+  }
+}
+
+.intro h1 {
+  font-size: clamp(3rem, 1.6rem + 6vw, 6rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  /* One word per line, and the box hugs the longest word */
+  width: min-content;
+}
+
+.intro-lead {
+  margin-top: 28px;
+  max-width: 34em;
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  line-height: 1.45;
+}
+
+.intro-links,
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 24px;
+}
+
+.intro-links a,
+.intro-links button,
+.contact-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.intro-links a:hover,
+.intro-links button:hover,
+.contact-links a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+/* Strip: one dot per project, stacked over its year */
+.shipped {
+  margin-top: 48px;
+  padding-bottom: 28px;
+}
+
+.shipped-years {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: end;
+  border-bottom: 1.5px solid var(--field-ink);
+}
+
+.shipped-year {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.shipped-dots {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 6px;
+  padding-bottom: 10px;
+  min-height: 24px;
+}
+
+.shipped-dot {
+  position: relative;
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--field-ink);
+  animation: settle 0.7s var(--ease) both;
+  animation-delay: calc(var(--i) * 60ms + 200ms);
+  transition: transform 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+
+.shipped-dot:hover,
+.shipped-dot:focus-visible {
+  transform: scale(1.25);
+  background: var(--field-muted);
+}
+
+.shipped-tip {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  translate: 0 -50%;
+  padding: 2px 9px;
+  border-radius: 4px;
+  background: var(--field-ink);
+  color: var(--field);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s var(--ease);
+  z-index: 1;
+}
+
+.shipped-year:nth-last-child(-n + 3) .shipped-tip {
+  left: auto;
+  right: 24px;
+}
+
+.shipped-dot:hover .shipped-tip,
+.shipped-dot:focus-visible .shipped-tip {
+  opacity: 1;
+}
+
+.shipped-label {
+  position: absolute;
+  top: calc(100% + 8px);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--field-muted);
+}
+
+/* Jobs sit behind the dots as faint bands on the same year columns */
+.shipped-plot {
+  display: grid;
+}
+
+.shipped-plot > * {
+  grid-area: 1 / 1;
+}
+
+.shipped-years {
+  position: relative;
+  z-index: 1;
+  min-height: 112px;
+}
+
+.stretches {
+  display: grid;
+  grid-template-columns: repeat(var(--years), 1fr);
+  margin-bottom: 1.5px;
+}
+
+.stretch {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  padding: 10px 12px;
+  border-left: 1px solid color-mix(in srgb, var(--field-ink) 22%, transparent);
+  background: color-mix(in srgb, var(--field-ink) 5%, transparent);
+}
+
+.stretch-label {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--field-muted);
+}
+
+.stretch-title {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--field-muted);
+}
+
+@media (max-width: 520px) {
+  .stretch {
+    padding: 8px;
+  }
+
+  .stretch-title {
+    display: none;
+  }
+}
+
+.sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -110,976 +501,470 @@ a:hover {
   white-space: nowrap;
 }
 
-ol,
-ul {
-  list-style: none;
-}
-
-h1,
-h2,
-h3 {
-  font-weight: 700;
-  font-variation-settings: "wdth" var(--display);
-  line-height: 0.92;
-  letter-spacing: -0.015em;
-}
-
-.caption {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.45;
-  color: var(--muted);
-}
-
-.skip {
-  position: absolute;
-  left: var(--gutter);
-  top: -100px;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 8px 12px;
-  z-index: 10;
-}
-
-.skip:focus {
-  top: 12px;
-}
-
-/* Header and footer */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 10px var(--gutter);
-  background: var(--paper);
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.site-header a {
-  text-decoration-color: transparent;
-}
-
-.site-header a:hover {
-  text-decoration-color: var(--signal);
-}
-
-.site-home {
-  display: block;
-  padding: 4px 0;
-}
-
-.site-header nav a {
-  padding: 10px 0;
-}
-
-/* The mark: K with the signal dot sitting on the baseline like a full stop, in the theme's ink.
-   app/icon.svg draws the same letter and proportions for the tab (dot 0.26em, gap 0.03em). */
-.mark {
-  display: inline-flex;
-  align-items: baseline;
-  color: var(--ink);
-  font-size: 40px;
-  font-weight: 800;
-  font-variation-settings: "wdth" 62;
-  line-height: 0.8;
-  letter-spacing: 0;
-}
-
-.mark-dot {
-  width: 0.26em;
-  height: 0.26em;
-  margin-left: 0.03em;
-  border-radius: 50%;
-  background: var(--signal);
-}
-
-@media (max-width: 420px) {
-  .site-header {
-    font-size: 14px;
-  }
-
-  .site-header nav {
-    gap: 16px;
-  }
-}
-
-.site-header nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-/* Light/dark switch (components/theme-toggle.tsx), the last item in the nav */
-.theme-toggle {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  margin-right: -9px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: none;
-  color: var(--ink);
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.theme-toggle:hover {
-  color: var(--signal);
-}
-
-.site-footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  gap: 12px;
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 28px var(--gutter) 40px;
-  border-top: 1px solid var(--hairline);
-  font-size: 14px;
-  color: var(--muted);
-}
-
-main {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 var(--gutter);
-}
-
-/* Hero, set like a cover. A small kicker line, the name at poster size, then a credit strip along
-   one rule: role, the outside-work line, the links. The dot portrait (components/dot-portrait.tsx)
-   sits right of KETUMAN, just above VISHWAKARMA. On phones it all stacks, portrait first. */
-.hero {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--gutter);
-  padding: 40px 0 28px;
-}
-
-.hero-lead {
-  font-size: clamp(16px, 1.3vw, 18px);
-  font-weight: 500;
-  line-height: 1.4;
-  text-wrap: balance;
-}
-
-.hero-name {
-  grid-column: 1 / -1;
-  font-size: var(--poster);
-  font-weight: 800;
-  line-height: 0.84;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  /* Only the words take the pointer, so the spotlight starts over letters, not the empty row */
-  pointer-events: none;
-}
-
-.hero-name .line {
-  display: block;
-  overflow: hidden;
-  padding-bottom: 0.04em;
-}
-
-.hero-name .line > span {
-  display: inline-block;
-  vertical-align: top;
-  pointer-events: auto;
-  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) both;
-}
-
-.hero-name .line + .line > span {
-  animation-delay: 0.12s;
-}
-
-.hero-meta {
-  font-size: 15px;
-  line-height: 1.5;
-}
-
-.hero-meta > * + * {
-  margin-top: 10px;
-}
-
-.hero-role {
-  font-weight: 600;
-}
-
-.hero-role::before {
-  content: "";
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  margin-right: 9px;
-  border-radius: 50%;
-  background: var(--signal);
-  vertical-align: 0.12em;
-}
-
-.hero-aside {
-  color: var(--muted);
-}
-
-/* Copy email, GitHub, LinkedIn: plain links with small icons. The email one is a button that copies. */
-.text-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 18px;
-  font-weight: 600;
-}
-
-.text-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: inherit;
-  font: inherit;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-  cursor: pointer;
-  transition: text-decoration-color 0.2s;
-}
-
-.text-link:hover {
-  text-decoration-color: var(--signal);
-}
-
-.text-link svg {
-  width: 14px;
-  height: 14px;
-}
-
-.hero-art {
-  color: var(--ink);
-}
-
-.hero-art canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-@media (min-width: 860px) {
-  .hero {
-    grid-template-rows: 1fr auto auto auto;
-    min-height: calc(100svh - 100px);
-    /* Portrait width: 31% up to 380px, and never taller than the room between the header and its
-       bottom edge (--art-room, measured by the component), so the head is never under the header */
-    --art-w: min(31%, 380px, calc(var(--art-room, 9999px) * 540 / 640));
-  }
-
-  .hero-name {
-    grid-row: 3;
-  }
-
-  .hero-lead {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    margin-bottom: 26px;
-    /* As wide as it can go without reaching the portrait */
-    max-width: calc(100% - var(--art-w) - 48px);
-  }
-
-  .hero-meta {
-    grid-column: 1 / -1;
-    grid-row: 4;
-    display: grid;
-    grid-template-columns: subgrid;
-    align-items: baseline;
-    margin-top: 22px;
-    padding-top: 14px;
-    border-top: 1px solid var(--ink);
-  }
-
-  .hero-meta > * + * {
-    margin-top: 0;
-  }
-
-  .hero-role {
-    grid-column: 1 / 4;
-  }
-
-  .hero-aside {
-    grid-column: 4 / 8;
-  }
-
-  .text-links {
-    grid-column: 8 / -1;
-    justify-content: flex-end;
-  }
-
-  .hero-art {
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    /* Bottom edge just above VISHWAKARMA, whatever the strip's height (set by the component) */
-    bottom: calc(28px + var(--strip-h, 72px) + 0.84 * var(--poster) + 0.08 * var(--poster) - 24px);
-    width: var(--art-w);
-    aspect-ratio: 540 / 640;
-  }
-}
-
-@media (max-width: 859px) {
-  .hero {
-    row-gap: 28px;
-    padding-top: 28px;
-  }
-
-  .hero-art {
-    grid-column: 4 / -1;
-    grid-row: 1;
-    aspect-ratio: 540 / 640;
-    margin-bottom: -8px;
-  }
-
-  .hero-name {
-    grid-row: 2;
-  }
-
-  .hero-lead,
-  .hero-meta {
-    grid-column: 1 / -1;
-  }
-
-  .hero-lead {
-    grid-row: 3;
-  }
-
-  .hero-meta {
-    grid-row: 4;
-  }
-}
-
-@keyframes rise {
+/* The one load-time entrance: dots settle onto their year, from a visible start */
+@keyframes settle {
   from {
-    transform: translateY(105%);
-  }
-  to {
-    transform: none;
+    transform: translateY(-20px);
   }
 }
 
-/* Sections */
-.section {
-  padding-top: clamp(110px, 14vw, 200px);
+@media (prefers-reduced-motion: reduce) {
+  .shipped-dot {
+    animation: none;
+  }
 }
 
-/* Poster heading: the same size as the hero name, uppercase, ending on a red full stop. The intro
-   sits beside it on its baseline when there's room, otherwise underneath; either way it lines up
-   to the right edge on desktop. */
-.poster {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  column-gap: 32px;
-  row-gap: 14px;
+@media (max-width: 520px) {
+  .shipped-year:nth-child(even) .shipped-label {
+    visibility: hidden;
+  }
 }
 
-.poster h2 {
-  font-size: var(--poster);
-  font-weight: 800;
-  line-height: 0.84;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-}
-
-.poster p {
-  max-width: 24em;
-  padding-bottom: 0.4em;
-  color: var(--muted);
+/* Section heads */
+.section-head {
+  display: grid;
+  gap: 12px 48px;
+  align-items: end;
 }
 
 @media (min-width: 860px) {
-  .poster p {
-    margin-left: auto;
+  .section-head {
+    grid-template-columns: auto 1fr;
+  }
+
+  .section-head .section-lead {
+    justify-self: end;
     text-align: right;
   }
 }
 
-/* Work as number rows: no boxes, no chips. One ink rule between rows. */
-.rows {
-  margin-top: 48px;
+.section-head h2,
+.contact h2 {
+  font-size: clamp(2.25rem, 1.6rem + 2.4vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
 }
 
-.row {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--gutter);
-  row-gap: 18px;
-  padding: 40px 0 44px;
-  border-top: 1px solid var(--ink);
-}
-
-.row:last-child {
-  border-bottom: 1px solid var(--ink);
-}
-
-.fig {
-  grid-column: 1 / 7;
-}
-
-.fig .caption {
-  display: block;
-  margin-top: 12px;
-}
-
-.figure {
-  display: block;
-  font-size: calc(var(--poster) * 0.62);
-  font-weight: 800;
-  font-variation-settings: "wdth" var(--display);
-  line-height: 0.84;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  font-variant-numeric: tabular-nums;
-}
-
-/* The old value, struck through in red. The strike is drawn as a line so it can sweep across
-   when the figure counts (components/count-figure.tsx); it's simply there without scripts. */
-.figure-from {
-  position: relative;
-  display: inline-block;
-  margin-right: 0.16em;
-  font-size: 0.42em;
+.section-lead {
+  max-width: 30em;
   color: var(--muted);
-  vertical-align: 0.12em;
+  font-size: 17px;
 }
 
-.figure-from::after {
-  content: "";
-  position: absolute;
-  left: -0.04em;
-  right: -0.04em;
-  top: 52%;
-  height: 0.07em;
-  background: var(--signal);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.45s cubic-bezier(0.55, 0.1, 0.3, 1);
+/* Projects: one list and one preview. Phones: the preview sticks above the list as it scrolls.
+   Wide screens: the list sits beside the preview. */
+.projects {
+  max-width: calc(var(--wide) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 80px var(--gutter) 112px;
 }
 
-.figure-from.is-struck::after {
-  transform: none;
+.index {
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
 }
 
-.story {
-  grid-column: 7 / -1;
-  align-self: end;
-  max-width: 34em;
+.index-list {
+  border-top: 1px solid var(--line);
 }
 
-.story h3 {
-  font-size: clamp(26px, 2.4vw, 34px);
-  line-height: 0.95;
+.entry {
+  border-bottom: 1px solid var(--line);
+  /* Following a strip link (or tapping a name) lands the entry just under the sticky preview */
+  scroll-margin-top: calc((100vw - 2 * var(--gutter)) * 0.625 + 40px);
 }
 
-.story p {
-  margin-top: 12px;
-  color: var(--muted);
+.entry h3 {
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: normal;
+  line-height: inherit;
 }
 
-.story .stack {
-  margin-top: 14px;
-}
-
-/* Experience as plain lines: period, role and company, note */
-.exp {
-  margin-top: 96px;
-}
-
-.exp h3 {
-  margin-bottom: 18px;
-  font-size: clamp(30px, 3vw, 42px);
-  line-height: 1;
-}
-
-.exp li {
+.entry-head {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--gutter);
-  row-gap: 4px;
-  padding: 18px 0;
-  border-top: 1px solid var(--hairline);
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  gap: 2px 16px;
+  width: 100%;
+  padding: 18px 0 10px;
+  cursor: pointer;
 }
 
-.exp li:last-child {
-  border-bottom: 1px solid var(--hairline);
+.entry-name {
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  transition: color 0.3s var(--ease);
 }
 
-.exp .when {
-  grid-column: 1 / 3;
-  font-variant-numeric: tabular-nums;
+/* The active project's name is full ink; the rest step back */
+.entry:not([data-open]) .entry-name {
+  color: color-mix(in srgb, var(--ink) 45%, var(--paper));
 }
 
-.exp .when.now {
+.entry:not([data-open]) .entry-head:hover .entry-name {
   color: var(--ink);
 }
 
-.exp .when.now::before {
-  content: "";
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  margin-right: 8px;
-  border-radius: 50%;
-  background: var(--signal);
-  vertical-align: 0.1em;
-}
-
-.exp .what {
-  grid-column: 3 / 7;
-  font-weight: 600;
-}
-
-.exp .note {
-  grid-column: 7 / -1;
+.entry-kind,
+.entry-year {
+  justify-self: end;
+  font-size: 14px;
   color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.entry-body {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.entry-inner {
+  min-height: 0;
+  padding-bottom: 20px;
+}
+
+.entry-summary {
+  max-width: 34em;
   font-size: 16px;
 }
 
-@media (max-width: 859px) {
-  .fig,
-  .story {
-    grid-column: 1 / -1;
-  }
-
-  .figure {
-    font-size: calc(var(--poster) * 0.9);
-  }
-
-  .exp {
-    margin-top: 72px;
-  }
-
-  .exp .when,
-  .exp .what,
-  .exp .note {
-    grid-column: 1 / -1;
-  }
-}
-
-/* Project plates */
-.plate-image {
-  display: block;
-  background: var(--plate);
-  outline: 1px solid var(--hairline);
-  outline-offset: -1px;
-  overflow: hidden;
-}
-
-/* Project images and the portrait are black and white until you hover them, or tap them on a
-   touch screen (the card and portrait take focus on tap, so the color stays) */
-.plate-image img,
-.portrait img {
-  filter: grayscale(1);
-  transition:
-    filter 0.5s ease,
-    transform 0.6s cubic-bezier(0.2, 0.7, 0.1, 1);
-}
-
-.plate-image img {
-  width: 100%;
-}
-
-.plate:hover .plate-image img,
-.plate:focus-within .plate-image img,
-.portrait:hover img,
-.portrait:focus img {
-  filter: none;
-}
-
-.plate:hover .plate-image img,
-.plate:focus-within .plate-image img {
-  transform: scale(1.015);
-}
-
-.plate h3 {
-  font-size: clamp(34px, 3.4vw, 48px);
-  font-weight: 800;
-}
-
-.plate h3 a {
-  text-decoration: none;
-}
-
-.plate h3 a:hover {
-  text-decoration: underline;
-  text-decoration-color: var(--signal);
-  text-decoration-thickness: 2px;
-}
-
-.plate-caption .caption {
-  margin-top: 10px;
-}
-
-.live {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-left: 12px;
-  color: var(--ink);
-}
-
-.live::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--signal);
-}
-
-.plate-summary {
-  margin-top: 14px;
-  max-width: 34em;
-}
-
-.plate-links {
+.entry-links {
   display: flex;
   flex-wrap: wrap;
-  column-gap: 20px;
-  row-gap: 6px;
-  margin-top: 16px;
-  font-size: 15px;
+  align-items: center;
+  gap: 8px 18px;
+  margin-top: 14px;
   font-weight: 500;
 }
 
-/* Featured plates (the current projects): image wide on the left, caption in the right margin */
-.feature {
-  padding-top: 56px;
+.entry-note {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
 }
 
-.feature .plate {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--gutter);
-  row-gap: 22px;
-}
-
-.feature-left .plate-image {
-  grid-column: 1 / 9;
-}
-
-.feature-left .plate-caption {
-  grid-column: 9 / -1;
-  align-self: end;
-}
-
-.feature-right {
-  padding-top: 120px;
-}
-
-.feature-right .plate-image {
-  grid-column: 1 / 9;
-}
-
-.feature-right .plate-caption {
-  grid-column: 9 / -1;
-  align-self: end;
-}
-
-@media (max-width: 859px) {
-  .feature-right {
-    padding-top: 72px;
-  }
-
-  .feature-left .plate-image,
-  .feature-left .plate-caption,
-  .feature-right .plate-image,
-  .feature-right .plate-caption {
-    grid-column: 1 / -1;
-    grid-row: auto;
-  }
-}
-
-/* Older projects in an even grid, two across (four projects make two full rows), images cropped
-   to one shape so the rows line up */
-.plates {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  row-gap: 72px;
-  padding-top: 120px;
-}
-
-.plates .plate-image img {
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  object-position: top;
-}
-
-.plates .plate-caption {
-  margin-top: 20px;
-}
-
-.plates .plate h3 {
-  font-size: clamp(28px, 2.4vw, 34px);
-}
-
-@media (max-width: 599px) {
-  .plates {
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: 56px;
-    padding-top: 80px;
-  }
-}
-
-/* Spotlight (components/spotlight.tsx): over the hero name and the section headings, a solid red
-   circle follows the pointer, painted only inside the letters. The text is painted by its own
-   background, clipped to the glyphs: a red disc at the pointer over a solid ink layer. The disc's
-   radius grows from 0 on hover and shrinks back on leave.
-
-   Mouse and trackpad only. Touch screens never get the effect, so they keep plain text: a clipped
-   background that fails to paint would leave the letters transparent (which is what hid the name
-   and headings on iPhone). The disc is drawn with color stops rather than a zero-size circle,
-   which Safari can treat as invalid. */
-@property --spot-r {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 0px;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  [data-spot] {
-    --spot-r: 0px;
-    background-image:
-      radial-gradient(
-        circle at var(--spot-x, 50%) var(--spot-y, 50%),
-        var(--signal) var(--spot-r),
-        transparent calc(var(--spot-r) + 0.5px)
-      ),
-      linear-gradient(var(--ink), var(--ink));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    transition: --spot-r 0.35s cubic-bezier(0.2, 0.7, 0.1, 1);
-  }
-
-  [data-spot].is-spot {
-    --spot-r: 72px;
-  }
-}
-
-/* Inherit the text color in high-contrast modes, where backgrounds are dropped */
-@media (forced-colors: active) {
-  [data-spot] {
-    background: none;
-    -webkit-text-fill-color: currentColor;
-    color: CanvasText;
-  }
-}
-
-/* The name and every section heading end on a red full stop, the same circle as the dot in the
-   K. mark (0.26em there; a touch smaller here) */
-.poster h2::after,
-.hero-name .stop::after {
-  content: "";
-  display: inline-block;
-  width: 0.2em;
-  height: 0.2em;
-  margin-left: 0.05em;
-  border-radius: 50%;
-  background: var(--signal);
-}
-
-/* The circle cursor (components/cursor.tsx). One 88px circle, scaled to suit what's under the
-   pointer: gone, a full stop over links, the full circle with "Open" over project images. */
-.cursor {
-  position: fixed;
+.preview {
+  order: -1;
+  position: sticky;
   top: 0;
-  left: 0;
-  z-index: 20;
-  pointer-events: none;
+  z-index: 2;
+  padding: 12px 0 16px;
+  background: var(--paper);
 }
 
-.cursor-circle {
+.preview-stage {
+  position: relative;
+  aspect-ratio: 16 / 10;
+}
+
+/* Every screenshot is 16:10, so each fills the same frame; the active one fades in. No frame:
+   rounded corners and a hairline edge only. */
+.preview-shot {
   position: absolute;
-  left: -44px;
-  top: -44px;
-  display: grid;
-  place-items: center;
-  width: 88px;
-  height: 88px;
-  border-radius: 50%;
-  background: var(--signal);
-  transform: scale(0);
-  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.1, 1);
-}
-
-.cursor[data-state="link"] .cursor-circle {
-  transform: scale(0.1);
-}
-
-.cursor[data-state="open"] .cursor-circle {
-  transform: scale(1);
-}
-
-.cursor-label {
-  color: #fff;
-  font-size: 15px;
-  font-weight: 700;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.cursor[data-state="open"] .cursor-label {
-  opacity: 1;
-  transition-delay: 0.1s;
-}
-
-.has-cursor .plate-image {
-  cursor: none;
-}
-
-/* Contact */
-.contact {
-  padding-bottom: 96px;
-}
-
-/* The address with the portrait beside it, smaller than it was in the hero */
-.contact-body {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--gutter);
-  row-gap: 48px;
-  align-items: end;
-  margin-top: 48px;
-}
-
-.contact-main {
-  grid-column: 1 / 9;
-  /* The address sizes itself to this column, so it fits beside the portrait at any width */
-  container-type: inline-size;
-}
-
-.contact-portrait {
-  grid-column: 10 / -1;
-  background: var(--plate);
-}
-
-.contact-portrait img {
+  inset: 0;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px var(--line);
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
 
-@media (max-width: 859px) {
-  .contact-main,
-  .contact-portrait {
-    grid-column: 1 / -1;
-  }
+.preview-shot[data-active] {
+  opacity: 1;
+}
 
-  .contact-portrait {
-    order: -1;
-  }
+/* Only the active project is open; the others are just their names */
+.index {
+  /* The component holds the open project in place itself, so the browser shouldn't also adjust */
+  overflow-anchor: none;
+}
 
-  .contact-portrait img {
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    object-position: 50% 20%;
+.entry:not([data-open]) .entry-body {
+  display: none;
+}
+
+.entry[data-open] .entry-inner {
+  animation: open-in 0.35s ease both;
+}
+
+@keyframes open-in {
+  from {
+    opacity: 0;
   }
 }
 
-/* The address set huge: a button that copies it, styled like the big link it replaced */
+@media (min-width: 960px) {
+  .index {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 56px;
+    align-items: start;
+  }
+
+  .entry {
+    scroll-margin-top: 24px;
+  }
+
+  .entry-head {
+    padding: 18px 0;
+  }
+
+  /* Wide screens animate the open and close instead of switching instantly */
+  .entry:not([data-open]) .entry-body {
+    display: grid;
+  }
+
+  .entry[data-open] .entry-inner {
+    animation: none;
+  }
+
+  .entry-body {
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s var(--ease);
+  }
+
+  .entry-inner {
+    overflow: hidden;
+    padding-bottom: 0;
+  }
+
+  .entry[data-open] .entry-body {
+    grid-template-rows: 1fr;
+  }
+
+  .entry-links {
+    padding-bottom: 24px;
+  }
+
+  .preview {
+    order: 0;
+    top: 32px;
+    padding: 0;
+    background: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry[data-open] .entry-inner {
+    animation: none;
+  }
+
+  .entry-body,
+  .entry-inner,
+  .entry-name,
+  .preview-shot {
+    transition: none;
+  }
+}
+
+/* Work: the plum band */
+.work {
+  background: var(--band);
+  color: var(--band-ink);
+  padding: 72px var(--gutter) 80px;
+}
+
+@media (min-width: 860px) {
+  .work {
+    padding: 96px var(--gutter) 104px;
+  }
+
+  .story {
+    padding: 32px 0;
+  }
+}
+
+.work-inner {
+  max-width: var(--wide);
+  margin: 0 auto;
+}
+
+.work .section-lead {
+  color: var(--band-muted);
+}
+
+.stories {
+  margin-top: 48px;
+  border-top: 1px solid var(--band-line);
+}
+
+/* Each story is a row: the account on the left, its number in the margin */
+.story {
+  display: grid;
+  gap: 12px 64px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--band-line);
+}
+
+@media (min-width: 860px) {
+  .story {
+    grid-template-columns: minmax(0, 1fr) 260px;
+  }
+
+  .story-fact {
+    text-align: right;
+  }
+
+  .story-figure {
+    justify-content: flex-end;
+  }
+}
+
+.story h3 {
+  font-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.story-body {
+  margin-top: 10px;
+  max-width: 38em;
+  color: color-mix(in srgb, var(--band-ink) 88%, var(--band));
+}
+
+.story-aside {
+  margin-top: 14px;
+  max-width: 38em;
+  padding-left: 14px;
+  border-left: 1px solid var(--band-accent);
+  font-size: 15px;
+  color: var(--band-accent);
+}
+
+.story-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.story-figure {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--band-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.story-label {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--band-muted);
+}
+
+.roles-title {
+  margin-top: 80px;
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.roles {
+  margin-top: 20px;
+  border-top: 1px solid var(--band-line);
+}
+
+/* Roles use the story rows' grid: the role on the left, its dates in the margin */
+.role {
+  display: grid;
+  gap: 6px 64px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--band-line);
+}
+
+@media (min-width: 860px) {
+  .role {
+    grid-template-columns: minmax(0, 1fr) 260px;
+  }
+
+  .role-when {
+    text-align: right;
+  }
+}
+
+.role h3 {
+  font-size: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.role-note {
+  margin-top: 6px;
+  max-width: 38em;
+  color: color-mix(in srgb, var(--band-ink) 88%, var(--band));
+}
+
+.role-when {
+  font-family: var(--display);
+  font-size: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--band-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Contact: the closing lavender field */
+.contact {
+  background: var(--field);
+  color: var(--field-ink);
+  padding: 88px var(--gutter) 40px;
+}
+
+.contact-inner {
+  max-width: var(--wide);
+  margin: 0 auto;
+}
+
+.contact-inner > p:first-of-type {
+  margin-top: 14px;
+  max-width: 32em;
+  font-size: 18px;
+  color: var(--field-muted);
+}
+
 .contact-copy {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  column-gap: 20px;
-  row-gap: 10px;
+  gap: 8px 16px;
+  margin-top: 32px;
 }
 
 .contact-email {
-  display: inline-block;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: inherit;
-  font-family: inherit;
-  text-align: left;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 0.9rem + 3vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
   text-decoration: underline;
-  text-decoration-color: currentColor;
-  cursor: pointer;
-  transition: text-decoration-color 0.2s;
-  /* The address is about 8.7em wide: fill the column, up to 124px */
-  font-size: min(124px, calc(100cqi / 8.9));
-  font-weight: 800;
-  font-variation-settings: "wdth" var(--display);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  text-decoration-thickness: 0.04em;
-  text-underline-offset: 0.12em;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, currentColor 30%, transparent);
   overflow-wrap: anywhere;
+  transition: text-decoration-color 0.2s var(--ease);
 }
 
 .contact-email:hover {
-  text-decoration-color: var(--signal);
+  text-decoration-color: currentColor;
 }
 
-.copy-status:empty {
-  display: none;
+.copy-status {
+  font-size: 14px;
+  color: var(--field-muted);
 }
 
-.contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 28px;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-/* Outlined buttons under the address */
-.icon-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  min-height: 46px;
-  padding: 0 15px;
-  border: 1px solid var(--ink);
-  color: inherit;
-  text-decoration: none;
-  transition: background 0.2s, color 0.2s;
-}
-
-.icon-link:hover {
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.icon-link svg {
-  width: 17px;
-  height: 17px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-.plate:focus,
-.portrait:focus {
-  outline: none;
+.colophon {
+  margin-top: 96px;
+  font-size: 13px;
+  color: var(--field-muted);
 }

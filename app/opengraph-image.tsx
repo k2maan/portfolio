@@ -1,84 +1,108 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
+import { products } from "@/lib/data";
 
-// The link preview, set like the hero in dark mode: the K. mark, the kicker line, the name at
-// poster size ending on a red full stop, the role along one rule, and the dot portrait right of
-// KETUMAN. lib/og/dot-portrait.png is a still render of components/dot-portrait.tsx.
+// The link preview, set like the intro: the lavender field, the name in Funnel Display, the
+// portrait to its right, the role line, and the year strip with one dot per project along the
+// bottom. Fonts are the Fontsource WOFF builds of Funnel Display (the image renderer can't read WOFF2).
 
 export const alt = "Ketuman Vishwakarma, Forward Deployed Engineer at Bluecore";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const INK = "#f2f2f2";
-const MUTED = "#9a9a9a";
-const SIGNAL = "#ff4a3d";
+const FIELD = "#d6d8fc";
+const INK = "#1f1a26";
+const MUTED = "#45417a";
 
 export default async function OpengraphImage() {
-  const [portrait, archivo] = await Promise.all([
-    readFile(join(process.cwd(), "lib/og/dot-portrait.png")),
-    // Archivo at weight 800, width 62: the display face used for the name on the site
-    readFile(join(process.cwd(), "lib/fonts/archivo-800-62.ttf")),
+  const [bold, semi, portrait] = await Promise.all([
+    readFile(join(process.cwd(), "lib/fonts/funnel-display-700.woff")),
+    readFile(join(process.cwd(), "lib/fonts/funnel-display-600.woff")),
+    readFile(join(process.cwd(), "public/portrait-square.jpg")),
   ]);
-  const dots = `data:image/png;base64,${portrait.toString("base64")}`;
-  const name = { fontSize: 150, lineHeight: 0.84, letterSpacing: -3 };
+  const photo = `data:image/jpeg;base64,${portrait.toString("base64")}`;
+
+  const years = products.map((p) => p.year);
+  const first = Math.min(...years);
+  const last = Math.max(new Date().getFullYear(), ...years);
+  const span = Array.from({ length: last - first + 1 }, (_, i) => first + i);
 
   return new ImageResponse(
     (
       <div
         style={{
-          position: "relative",
           display: "flex",
           flexDirection: "column",
           width: "100%",
           height: "100%",
-          padding: 56,
-          background: "#000",
+          padding: "52px 64px 44px",
+          background: FIELD,
           color: INK,
-          fontFamily: "Archivo",
+          fontFamily: "Funnel Display",
         }}
       >
-        <img src={dots} alt="" width={330} height={391} style={{ position: "absolute", right: 56, top: 24 }} />
-        <div style={{ display: "flex", alignItems: "flex-end", fontSize: 56, lineHeight: 0.8 }}>
-          K
-          <div style={{ width: 15, height: 15, borderRadius: 15, background: SIGNAL, marginLeft: 2 }} />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            marginTop: "auto",
-            marginBottom: 24,
-            width: 660,
-            fontSize: 24,
-            lineHeight: 1.3,
-            color: MUTED,
-          }}
-        >
-          I embed with customers’ engineering teams, build whatever it takes to get our product live in their stack,
-          and keep it running in production.
-        </div>
-        <div style={{ display: "flex", ...name }}>KETUMAN</div>
-        <div style={{ display: "flex", alignItems: "flex-end", ...name }}>
-          VISHWAKARMA
+        <div style={{ display: "flex", fontSize: 26, fontWeight: 700, letterSpacing: -0.5 }}>k2maan</div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 72, marginTop: 28 }}>
           <div
-            style={{ width: 30, height: 30, borderRadius: 30, background: SIGNAL, marginLeft: 7, marginBottom: 6 }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              fontSize: 118,
+              fontWeight: 700,
+              lineHeight: 0.92,
+              letterSpacing: -4.5,
+            }}
+          >
+            <span>Ketuman</span>
+            <span>Vishwakarma</span>
+          </div>
+          <img
+            src={photo}
+            alt=""
+            width={190}
+            height={190}
+            style={{ borderRadius: 190, border: "2px solid #ffffff" }}
           />
         </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginTop: 24,
-            paddingTop: 16,
-            borderTop: `1px solid ${INK}`,
-            fontSize: 24,
-          }}
-        >
-          <div style={{ width: 10, height: 10, borderRadius: 10, background: SIGNAL, marginRight: 12 }} />
+
+        <div style={{ display: "flex", marginTop: 26, fontSize: 32, fontWeight: 600, color: MUTED }}>
           Forward Deployed Engineer at Bluecore
+        </div>
+
+        {/* The year strip: dots stacked over each year on one line */}
+        <div style={{ display: "flex", flexDirection: "column", marginTop: "auto" }}>
+          <div style={{ display: "flex", alignItems: "flex-end", borderBottom: `3px solid ${INK}` }}>
+            {span.map((year) => (
+              <div
+                key={year}
+                style={{ display: "flex", flexDirection: "column-reverse", gap: 6, flex: 1, paddingBottom: 10 }}
+              >
+                {products
+                  .filter((p) => p.year === year)
+                  .map((p) => (
+                    <div key={p.slug} style={{ width: 16, height: 16, borderRadius: 16, background: INK }} />
+                  ))}
+              </div>
+            ))}
+          </div>
+          <div style={{ display: "flex", marginTop: 8, fontSize: 18, fontWeight: 600, color: MUTED }}>
+            {span.map((year) => (
+              <div key={year} style={{ display: "flex", flex: 1 }}>
+                {year}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     ),
-    { ...size, fonts: [{ name: "Archivo", data: archivo, weight: 800, style: "normal" }] },
+    {
+      ...size,
+      fonts: [
+        { name: "Funnel Display", data: bold, weight: 700, style: "normal" },
+        { name: "Funnel Display", data: semi, weight: 600, style: "normal" },
+      ],
+    },
   );
 }

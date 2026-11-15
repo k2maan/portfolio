@@ -1,0 +1,618 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-15T18:04:46+00:00",
+  "title": "Design System: Ketuman Vishwakarma",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#141414",
+          "#2e2e2e",
+          "#4c4c4c",
+          "#6b6b6b",
+          "#8c8c8c",
+          "#adadad",
+          "#cfcfcf",
+          "#f0f0f0"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Plum Ink",
+        "canonical": "#1f1a26",
+        "tonalRamp": [
+          "#141217",
+          "#2d2735",
+          "#4a3e5b",
+          "#68577f",
+          "#8977a2",
+          "#ab9ebd",
+          "#cdc7d6",
+          "#efeef1"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Plum",
+        "canonical": "#5e5868",
+        "tonalRamp": [
+          "#141315",
+          "#2d2b31",
+          "#4b4653",
+          "#696274",
+          "#8a8396",
+          "#aca7b4",
+          "#cecbd2",
+          "#f0eff0"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#e7e4ee",
+        "tonalRamp": [
+          "#131217",
+          "#2b2636",
+          "#463b5e",
+          "#615383",
+          "#8272a6",
+          "#a69bc0",
+          "#cbc6d7",
+          "#efeef2"
+        ]
+      },
+      "field": {
+        "role": "primary",
+        "displayName": "Lavender Field",
+        "canonical": "#d6d8fc",
+        "tonalRamp": [
+          "#0b0c1e",
+          "#0e124e",
+          "#0a118f",
+          "#0f18c8",
+          "#2934ef",
+          "#676ef4",
+          "#adb1f0",
+          "#e8e9f7"
+        ]
+      },
+      "field-ink": {
+        "role": "neutral",
+        "displayName": "Field Ink",
+        "canonical": "#1f1a26",
+        "tonalRamp": [
+          "#141217",
+          "#2d2735",
+          "#4a3e5b",
+          "#68577f",
+          "#8977a2",
+          "#ab9ebd",
+          "#cdc7d6",
+          "#efeef1"
+        ]
+      },
+      "field-muted": {
+        "role": "neutral",
+        "displayName": "Field Muted",
+        "canonical": "#45417a",
+        "tonalRamp": [
+          "#111118",
+          "#242339",
+          "#383564",
+          "#4f4a8c",
+          "#6e69af",
+          "#9895c6",
+          "#c4c3da",
+          "#ededf2"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Pale Panel",
+        "canonical": "#f0f0fd",
+        "tonalRamp": [
+          "#0c0c1d",
+          "#12124a",
+          "#121287",
+          "#1919bd",
+          "#3434e4",
+          "#6f6fec",
+          "#b1b1ec",
+          "#e9e9f6"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Moss Green",
+        "canonical": "#2e6b4f",
+        "tonalRamp": [
+          "#101915",
+          "#1f3d2f",
+          "#2e6b4f",
+          "#40966f",
+          "#5eba90",
+          "#8dceb0",
+          "#bfded0",
+          "#ecf3f0"
+        ]
+      },
+      "band": {
+        "role": "secondary",
+        "displayName": "Plum Band",
+        "canonical": "#1f1a26",
+        "tonalRamp": [
+          "#141217",
+          "#2d2735",
+          "#4a3e5b",
+          "#68577f",
+          "#8977a2",
+          "#ab9ebd",
+          "#cdc7d6",
+          "#efeef1"
+        ]
+      },
+      "band-ink": {
+        "role": "neutral",
+        "displayName": "Band Ink",
+        "canonical": "#efedf6",
+        "tonalRamp": [
+          "#121118",
+          "#27223a",
+          "#3e3366",
+          "#57478f",
+          "#7766b3",
+          "#9e92c9",
+          "#c7c2db",
+          "#eeedf3"
+        ]
+      },
+      "band-muted": {
+        "role": "neutral",
+        "displayName": "Band Muted",
+        "canonical": "#aaa4b6",
+        "tonalRamp": [
+          "#141316",
+          "#2d2a32",
+          "#4a4455",
+          "#675f77",
+          "#888099",
+          "#aaa4b6",
+          "#cdcad3",
+          "#efeff1"
+        ]
+      },
+      "band-line": {
+        "role": "neutral",
+        "displayName": "Band Line",
+        "canonical": "#3a3344",
+        "tonalRamp": [
+          "#141316",
+          "#2d2933",
+          "#4b4257",
+          "#685c7a",
+          "#897c9d",
+          "#aba2b9",
+          "#cec9d4",
+          "#efeef1"
+        ]
+      },
+      "band-accent": {
+        "role": "secondary",
+        "displayName": "Band Lavender",
+        "canonical": "#d6d8fc",
+        "tonalRamp": [
+          "#0b0c1e",
+          "#0e124e",
+          "#0a118f",
+          "#0f18c8",
+          "#2934ef",
+          "#676ef4",
+          "#adb1f0",
+          "#e8e9f7"
+        ]
+      },
+      "paper-dark": {
+        "role": "neutral",
+        "displayName": "Paper (dark)",
+        "canonical": "#18151d",
+        "tonalRamp": [
+          "#141316",
+          "#2c2834",
+          "#494059",
+          "#675a7c",
+          "#887a9f",
+          "#aaa0ba",
+          "#cdc8d5",
+          "#efeef1"
+        ]
+      },
+      "ink-dark": {
+        "role": "neutral",
+        "displayName": "Plum Ink (dark)",
+        "canonical": "#f1eff6",
+        "tonalRamp": [
+          "#131118",
+          "#292438",
+          "#433762",
+          "#5e4d89",
+          "#7e6cac",
+          "#a497c4",
+          "#cac4d9",
+          "#efedf2"
+        ]
+      },
+      "muted-dark": {
+        "role": "neutral",
+        "displayName": "Muted Plum (dark)",
+        "canonical": "#aaa4b6",
+        "tonalRamp": [
+          "#141316",
+          "#2d2a32",
+          "#4a4455",
+          "#675f77",
+          "#888099",
+          "#aaa4b6",
+          "#cdcad3",
+          "#efeff1"
+        ]
+      },
+      "line-dark": {
+        "role": "neutral",
+        "displayName": "Hairline (dark)",
+        "canonical": "#2d2834",
+        "tonalRamp": [
+          "#141316",
+          "#2d2933",
+          "#4b4356",
+          "#695d79",
+          "#8a7d9b",
+          "#aca3b8",
+          "#cec9d4",
+          "#f0eff1"
+        ]
+      },
+      "field-dark": {
+        "role": "primary",
+        "displayName": "Lavender Field (dark)",
+        "canonical": "#cfd1f9",
+        "tonalRamp": [
+          "#0c0d1d",
+          "#11144a",
+          "#111788",
+          "#1820be",
+          "#333be6",
+          "#6e74ed",
+          "#b0b3ed",
+          "#e9eaf6"
+        ]
+      },
+      "panel-dark": {
+        "role": "neutral",
+        "displayName": "Pale Panel (dark)",
+        "canonical": "#23202a",
+        "tonalRamp": [
+          "#141316",
+          "#2c2933",
+          "#484257",
+          "#655d7a",
+          "#867d9c",
+          "#a9a2b8",
+          "#ccc9d4",
+          "#efeff1"
+        ]
+      },
+      "accent-dark": {
+        "role": "primary",
+        "displayName": "Moss Green (dark)",
+        "canonical": "#8fd1ae",
+        "tonalRamp": [
+          "#101914",
+          "#1f3d2d",
+          "#2d6c4b",
+          "#3e9868",
+          "#5cbc89",
+          "#8bcfab",
+          "#bedfce",
+          "#ecf3ef"
+        ]
+      },
+      "band-dark": {
+        "role": "secondary",
+        "displayName": "Plum Band (dark)",
+        "canonical": "#221e29",
+        "tonalRamp": [
+          "#141316",
+          "#2c2834",
+          "#494158",
+          "#675b7c",
+          "#877a9e",
+          "#aaa1ba",
+          "#cdc9d5",
+          "#efeef1"
+        ]
+      },
+      "theme-color": {
+        "role": "primary",
+        "displayName": "Browser theme colour (light)",
+        "canonical": "#d6d8fc",
+        "tonalRamp": [
+          "#0b0c1e",
+          "#0e124e",
+          "#0a118f",
+          "#0f18c8",
+          "#2934ef",
+          "#676ef4",
+          "#adb1f0",
+          "#e8e9f7"
+        ]
+      },
+      "theme-color-dark": {
+        "role": "primary",
+        "displayName": "Browser theme colour (dark)",
+        "canonical": "#cfd1f9",
+        "tonalRamp": [
+          "#0c0d1d",
+          "#11144a",
+          "#111788",
+          "#1820be",
+          "#333be6",
+          "#6e74ed",
+          "#b0b3ed",
+          "#e9eaf6"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name in the intro only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings: Projects, Work, Say hello."
+      },
+      "email": {
+        "displayName": "Email",
+        "purpose": "The large copy-email address in Contact."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "The number in each work story's margin, tabular."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Project names in the index."
+      },
+      "title-story": {
+        "displayName": "Title story",
+        "purpose": "Work story titles."
+      },
+      "handle": {
+        "displayName": "Handle",
+        "purpose": "k2maan in the header."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "The intro paragraph."
+      },
+      "body-large": {
+        "displayName": "Body large",
+        "purpose": "The line under Say hello."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All running text and section leads."
+      },
+      "body-compact": {
+        "displayName": "Body compact",
+        "purpose": "Project summaries in the open index entry on wide screens."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Header nav links and story asides."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Kind, year, Source only, stacks, figure labels, role dates, copy confirmation."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Strip year labels and tooltips (500), the colophon."
+      }
+    },
+    "shadows": [
+      {
+        "name": "portrait-ring",
+        "value": "0 0 0 1.5px var(--paper)",
+        "purpose": "A thin paper ring around the portrait on the lavender field. An outline, not elevation; the only box-shadow."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The one easing for every transition, the dot entrance and the preview wipe."
+      },
+      {
+        "name": "dot-settle",
+        "value": "translateY(-20px) to 0, 0.7s, 60ms stagger after 200ms",
+        "purpose": "Shipped-strip dots settle onto their year on load. Off under prefers-reduced-motion."
+      },
+      {
+        "name": "entry-open",
+        "value": "grid-template-rows 0fr to 1fr, 0.5s; name colour 0.3s, translateX(6px) 0.4s",
+        "purpose": "The active index entry opens on wide screens. Off under prefers-reduced-motion."
+      },
+      {
+        "name": "preview-wipe",
+        "value": "clip-path inset(100% 0 0 0) to inset(0), translateY(24px) scale(0.98) to none, 0.7s; outgoing shot delayed 0.6s",
+        "purpose": "The active project's screenshot wipes up over the last one in the sticky preview. Off under prefers-reduced-motion."
+      },
+      {
+        "name": "hover-intent",
+        "value": "90ms",
+        "purpose": "Delay before pointing at an entry makes it active, so sweeping the list doesn't flicker."
+      },
+      {
+        "name": "hover",
+        "value": "0.15s to 0.3s",
+        "purpose": "Colour, underline, tint, tooltip and dot-scale transitions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow",
+        "value": "520px"
+      },
+      {
+        "name": "gutter-wide",
+        "value": "760px"
+      },
+      {
+        "name": "two-column",
+        "value": "860px"
+      },
+      {
+        "name": "index-preview",
+        "value": "960px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The first link of each project: play, install or try.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Play it</a>",
+      "css": ".ds-btn-primary{display:inline-block;padding:7px 16px;border-radius:4px;background:var(--ink,#1f1a26);color:var(--paper,#fff);font-family:var(--text,'Funnel Sans',sans-serif);font-weight:500;text-decoration:none;transition:background-color .2s cubic-bezier(.16,1,.3,1)}.ds-btn-primary:hover{background:var(--accent,#2e6b4f)}.ds-btn-primary:focus-visible{outline:2px solid var(--accent,#2e6b4f);outline-offset:3px;border-radius:4px}"
+    },
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Body links: inherited colour, 1px underline at 35% that goes solid on hover.",
+      "html": "<p class=\"ds-p\">I build small games at <a class=\"ds-link\" href=\"#\">Bluecore</a>.</p>",
+      "css": ".ds-p{font-family:var(--text,'Funnel Sans',sans-serif);font-size:17px;line-height:1.6;color:var(--ink,#1f1a26)}.ds-link{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em;text-decoration-color:color-mix(in srgb,currentColor 35%,transparent);transition:text-decoration-color .2s cubic-bezier(.16,1,.3,1)}.ds-link:hover{text-decoration-color:currentColor}.ds-link:focus-visible{outline:2px solid var(--accent,#2e6b4f);outline-offset:3px;border-radius:4px}"
+    },
+    {
+      "name": "Header",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Handle, nav links and theme toggle on the lavender field.",
+      "html": "<header class=\"ds-header\"><a class=\"ds-home\" href=\"#\">k2maan</a><nav class=\"ds-nav\"><a href=\"#\">Projects</a><a href=\"#\">Work</a><a href=\"#\">Contact</a><button class=\"ds-toggle\" aria-label=\"Switch to dark mode\"><svg viewBox=\"0 0 16 16\" width=\"18\" height=\"18\"><circle cx=\"8\" cy=\"8\" r=\"6.25\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M8 1.75a6.25 6.25 0 0 1 0 12.5z\" fill=\"currentColor\"/></svg></button></nav></header>",
+      "css": ".ds-header{display:flex;justify-content:space-between;align-items:center;padding:20px;background:var(--field,#d6d8fc);color:var(--field-ink,#1f1a26);font-family:var(--text,'Funnel Sans',sans-serif);font-size:15px}.ds-home{font-family:var(--display,'Funnel Display',sans-serif);font-weight:700;font-size:18px;letter-spacing:-.01em;color:inherit;text-decoration:none}.ds-nav{display:flex;align-items:center;gap:4px}.ds-nav a{padding:6px 10px;border-radius:4px;color:inherit;text-decoration:none;transition:background-color .2s cubic-bezier(.16,1,.3,1)}.ds-toggle{display:grid;place-items:center;width:36px;height:36px;margin-left:4px;border:0;border-radius:4px;background:none;color:inherit;cursor:pointer;transition:background-color .2s cubic-bezier(.16,1,.3,1)}.ds-nav a:hover,.ds-toggle:hover{background:color-mix(in srgb,var(--field-ink,#1f1a26) 9%,transparent)}.ds-nav a:focus-visible,.ds-toggle:focus-visible{outline:2px solid var(--field-ink,#1f1a26);outline-offset:3px}"
+    },
+    {
+      "name": "Copy Email (large)",
+      "kind": "button",
+      "refersTo": "",
+      "description": "The address set large in Contact; clicking copies it and confirms beside it.",
+      "html": "<div class=\"ds-contact\"><button class=\"ds-email\">hello.ketuman@gmail.com</button><span class=\"ds-status\">Copied to clipboard</span></div>",
+      "css": ".ds-contact{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;padding:24px;background:var(--field,#d6d8fc);color:var(--field-ink,#1f1a26)}.ds-email{font-family:var(--display,'Funnel Display',sans-serif);font-size:clamp(1.5rem,.9rem + 3vw,3rem);font-weight:600;letter-spacing:-.03em;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.18em;text-decoration-color:color-mix(in srgb,currentColor 30%,transparent);overflow-wrap:anywhere;transition:text-decoration-color .2s cubic-bezier(.16,1,.3,1)}.ds-email:hover{text-decoration-color:currentColor}.ds-email:focus-visible{outline:2px solid var(--field-ink,#1f1a26);outline-offset:3px;border-radius:4px}.ds-status{font-family:var(--text,'Funnel Sans',sans-serif);font-size:14px;color:var(--field-muted,#45417a)}"
+    },
+    {
+      "name": "Shipped Strip",
+      "kind": "custom",
+      "refersTo": "shipped-dot",
+      "description": "Signature: one dot per project over its year, on the intro field. No caption.",
+      "html": "<figure class=\"ds-strip\"><ol class=\"ds-years\"><li><span class=\"ds-dots\"><a class=\"ds-dot\" href=\"#\"><span class=\"ds-tip\">Indigo</span></a></span><span class=\"ds-yl\">2020</span></li><li><span class=\"ds-dots\"><a class=\"ds-dot\" href=\"#\"><span class=\"ds-tip\">MovieHut</span></a></span><span class=\"ds-yl\">2021</span></li><li><span class=\"ds-dots\"></span><span class=\"ds-yl\">2022</span></li><li><span class=\"ds-dots\"><a class=\"ds-dot\" href=\"#\"><span class=\"ds-tip ds-left\">EasyResume</span></a></span><span class=\"ds-yl\">2023</span></li><li><span class=\"ds-dots\"><a class=\"ds-dot\" href=\"#\"><span class=\"ds-tip ds-left\">Perk</span></a><a class=\"ds-dot\" href=\"#\"><span class=\"ds-tip ds-left\">Diya Duty</span></a><a class=\"ds-dot\" href=\"#\"><span class=\"ds-tip ds-left\">Git-ing Over It</span></a></span><span class=\"ds-yl\">2026</span></li></ol></figure>",
+      "css": ".ds-strip{margin:0;padding:24px 24px 48px;background:var(--field,#d6d8fc);color:var(--field-ink,#1f1a26);font-family:var(--text,'Funnel Sans',sans-serif)}.ds-years{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;align-items:end;margin:0;padding:0;list-style:none;border-bottom:1.5px solid var(--field-ink,#1f1a26)}.ds-years li{position:relative;display:flex;flex-direction:column;align-items:flex-start}.ds-dots{display:flex;flex-direction:column-reverse;gap:6px;padding-bottom:10px;min-height:24px}.ds-dot{position:relative;display:block;width:16px;height:16px;border-radius:999px;background:var(--field-ink,#1f1a26);transition:transform .2s cubic-bezier(.16,1,.3,1),background-color .2s cubic-bezier(.16,1,.3,1)}.ds-dot:hover,.ds-dot:focus-visible{transform:scale(1.25);background:var(--accent,#2e6b4f);outline:none}.ds-tip{position:absolute;left:24px;top:50%;translate:0 -50%;padding:2px 9px;border-radius:4px;background:var(--field-ink,#1f1a26);color:var(--field,#d6d8fc);font-size:13px;font-weight:500;white-space:nowrap;opacity:0;pointer-events:none;z-index:1;transition:opacity .15s cubic-bezier(.16,1,.3,1)}.ds-tip.ds-left{left:auto;right:24px}.ds-dot:hover .ds-tip,.ds-dot:focus-visible .ds-tip{opacity:1}.ds-yl{position:absolute;top:calc(100% + 8px);font-size:13px;font-variant-numeric:tabular-nums;color:var(--field-muted,#45417a)}"
+    },
+    {
+      "name": "Project Index",
+      "kind": "custom",
+      "refersTo": "index-entry",
+      "description": "Signature: a list of projects; the open entry shows its summary and links. On wide screens it sits beside a sticky lavender preview.",
+      "html": "<div class=\"ds-index\"><ol class=\"ds-list\"><li class=\"ds-entry ds-open\"><button class=\"ds-head\"><span class=\"ds-name\">Git-ing Over It</span><span class=\"ds-meta\">Browser game</span><span class=\"ds-meta\">2026</span></button><div class=\"ds-body\"><p class=\"ds-sum\">A game that teaches git judgment, not git commands.</p><p class=\"ds-links\"><a class=\"ds-btn\" href=\"#\">Play it</a></p></div></li><li class=\"ds-entry\"><button class=\"ds-head\"><span class=\"ds-name\">Diya Duty</span><span class=\"ds-meta\">Browser game</span><span class=\"ds-meta\">2026</span></button></li><li class=\"ds-entry\"><button class=\"ds-head\"><span class=\"ds-name\">Perk</span><span class=\"ds-meta\">Chrome extension</span><span class=\"ds-meta\">2026</span></button></li></ol><div class=\"ds-stage\"><div class=\"ds-shot\"></div></div></div>",
+      "css": ".ds-index{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start;padding:24px;background:var(--paper,#fff);color:var(--ink,#1f1a26);font-family:var(--text,'Funnel Sans',sans-serif)}.ds-list{margin:0;padding:0;list-style:none;border-top:1px solid var(--line,#e7e4ee)}.ds-entry{border-bottom:1px solid var(--line,#e7e4ee)}.ds-head{display:grid;grid-template-columns:1fr auto auto;align-items:baseline;gap:2px 20px;width:100%;padding:18px 0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}.ds-name{font-family:var(--display,'Funnel Display',sans-serif);font-size:clamp(1.5rem,1.2rem + 1vw,2rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;color:color-mix(in srgb,var(--ink,#1f1a26) 45%,var(--paper,#fff));transition:color .3s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1)}.ds-head:hover .ds-name{color:var(--ink,#1f1a26)}.ds-open .ds-name{color:var(--ink,#1f1a26);transform:translateX(6px)}.ds-head:focus-visible{outline:2px solid var(--accent,#2e6b4f);outline-offset:3px;border-radius:4px}.ds-meta{font-size:14px;color:var(--muted,#5e5868);font-variant-numeric:tabular-nums}.ds-sum{margin:0;max-width:34em;font-size:16px;line-height:1.6}.ds-links{margin:16px 0 0;padding-bottom:24px}.ds-btn{display:inline-block;padding:7px 16px;border-radius:4px;background:var(--ink,#1f1a26);color:var(--paper,#fff);font-weight:500;text-decoration:none;transition:background-color .2s cubic-bezier(.16,1,.3,1)}.ds-btn:hover{background:var(--accent,#2e6b4f)}.ds-stage{position:relative;aspect-ratio:16/11;border-radius:14px;background:var(--field,#d6d8fc);overflow:hidden}.ds-shot{position:absolute;inset:7%;border-radius:8px;background:var(--panel,#f0f0fd);clip-path:inset(0 0 0 0);transition:clip-path .7s cubic-bezier(.16,1,.3,1)}.ds-stage:hover .ds-shot{clip-path:inset(100% 0 0 0)}"
+    },
+    {
+      "name": "Work Story",
+      "kind": "card",
+      "refersTo": "story-row",
+      "description": "A row on the plum band: the account on the left, its figure in the right margin, an optional aside.",
+      "html": "<div class=\"ds-band\"><article class=\"ds-story\"><div><h3 class=\"ds-st\">EventProof</h3><p class=\"ds-sb\">EventProof drafts a checklist from the integration code and checks every event payload in code.</p><p class=\"ds-aside\">A short postscript under the story.</p><p class=\"ds-stack\">TypeScript, Playwright</p></div><p class=\"ds-fact\"><span class=\"ds-fig\"><s>30</s><span>12 min</span></span><span class=\"ds-fl\">for each live site check</span></p></article></div>",
+      "css": ".ds-band{padding:24px;background:var(--band,#1f1a26);color:var(--band-ink,#efedf6);font-family:var(--text,'Funnel Sans',sans-serif);font-size:17px;line-height:1.6}.ds-story{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:16px 64px;padding:32px 0;border-top:1px solid var(--band-line,#3a3344);border-bottom:1px solid var(--band-line,#3a3344)}.ds-st{margin:0;font-family:var(--display,'Funnel Display',sans-serif);font-size:clamp(1.375rem,1.2rem + .6vw,1.75rem);font-weight:700;letter-spacing:-.025em;line-height:1.1}.ds-sb{margin:10px 0 0;max-width:38em;color:color-mix(in srgb,var(--band-ink,#efedf6) 88%,var(--band,#1f1a26))}.ds-aside{margin:14px 0 0;padding-left:14px;border-left:1px solid var(--band-accent,#d6d8fc);font-size:15px;color:var(--band-accent,#d6d8fc)}.ds-stack{margin:14px 0 0;font-size:14px;color:var(--band-muted,#aaa4b6)}.ds-fact{display:flex;flex-direction:column;gap:6px;margin:0;text-align:right}.ds-fig{display:flex;justify-content:flex-end;align-items:baseline;gap:12px;font-family:var(--display,'Funnel Display',sans-serif);font-size:clamp(1.75rem,1.4rem + 1.2vw,2.5rem);font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--band-accent,#d6d8fc);font-variant-numeric:tabular-nums}.ds-fig s{font-weight:500;color:var(--band-muted,#aaa4b6);text-decoration-thickness:2px}.ds-fl{font-size:14px;line-height:1.4;color:var(--band-muted,#aaa4b6)}"
+    },
+    {
+      "name": "Roles List",
+      "kind": "custom",
+      "refersTo": "role-row",
+      "description": "Earlier and current roles under the stories, with the résumé link last.",
+      "html": "<ol class=\"ds-roles\"><li><span class=\"ds-when\">2024 to now</span><span>Forward Deployed Engineer, <a href=\"#\">Bluecore</a></span></li><li><span class=\"ds-when\">2022 to 2024</span><span>Software Engineer, Frontend, <a href=\"#\">HotWax Commerce</a></span></li><li><span class=\"ds-when\"></span><a class=\"ds-resume\" href=\"#\">Full résumé (PDF)</a></li></ol>",
+      "css": ".ds-roles{margin:0;padding:24px;list-style:none;background:var(--band,#1f1a26);color:var(--band-ink,#efedf6);font-family:var(--text,'Funnel Sans',sans-serif);font-size:17px;line-height:1.6}.ds-roles li{display:grid;grid-template-columns:180px 1fr;gap:2px 32px;padding:14px 0;border-bottom:1px solid var(--band-line,#3a3344)}.ds-roles a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em;text-decoration-color:color-mix(in srgb,currentColor 35%,transparent)}.ds-roles a:hover{text-decoration-color:currentColor}.ds-roles a:focus-visible{outline:2px solid var(--band-accent,#d6d8fc);outline-offset:3px;border-radius:4px}.ds-when{font-size:14px;color:var(--band-muted,#aaa4b6);font-variant-numeric:tabular-nums}.ds-resume{font-weight:500}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Plum ink on lavender",
+    "overview": "A one-page portfolio with no metaphor. Plum-black ink on white paper, framed by two flat lavender fields: one holds the intro at the top, the other the contact band at the bottom. Between them the Projects index sits on paper, beside a sticky lavender preview, and Work sits on a full-bleed plum-black band where lavender becomes the light. Moss green is the one interaction colour.\n\nThe page is light and quiet, but it moves where the work is. One display face carries the name, headings, project names and figures; one text face does all the reading. No drop shadows, no gradients, no photography beyond one portrait. Motion is limited to the shipped-strip dots settling on load and the project index opening entries and wiping screenshots into its preview.",
+    "keyCharacteristics": [
+      "Lavender fields bookend the page; a plum-black band holds Work between paper sections.",
+      "One display face set big and tight; one text face for all reading.",
+      "Flat throughout. Depth comes from fields, the band and panels, never drop shadows.",
+      "14px panels for media, 4px corners for every control, circles only for the portrait and dots.",
+      "New projects are a data edit in `lib/data.ts`; the index, the strip and the preview take them without change."
+    ],
+    "rules": [
+      {
+        "name": "The Bright Field Rule",
+        "body": "The lavender fields never go dark. In dark mode only the paper, the panel, the band and what sits on them change; field ink stays dark on lavender.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Fields, One Band Rule",
+        "body": "Full-bleed lavender appears only at the top (intro) and bottom (contact). The plum band holds Work and nothing else. Inside the page, lavender shows up only as the preview stage and the band's light.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Green Rule",
+        "body": "Moss green is for interaction only: hover and focus. It never fills a surface or colours static text.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Eyebrow Rule",
+        "body": "Headings stand alone. No small uppercase labels above them, no kickers.",
+        "section": "typography"
+      },
+      {
+        "name": "The Plain Voice Rule",
+        "body": "Copy is first person, sentence case, specific and plain. No em dashes, no hype.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Drop Shadow Rule",
+        "body": "No drop or ambient shadows, on any surface or state. Use a field, the band, a panel or a rule instead.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Square Control Rule",
+        "body": "Anything you click that is not a dot has 4px corners. No pill buttons.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do keep the lavender fields bright in dark mode (`field-dark`) with dark field ink; darken only the paper, panel and band.",
+      "Do keep Work on the plum band, with lavender (`band-accent`) as its only light.",
+      "Do use moss green only for hover and focus.",
+      "Do use 4px corners on every control, 14px on media panels, 8px on screenshots, and circles only for the portrait and dots.",
+      "Do set the name, headings, project names, story titles and figures in Funnel Display, and everything else in Funnel Sans, at the sizes in the type hierarchy.",
+      "Do show each project's real screenshot, with its primary link as an ink button.",
+      "Do add projects by editing `lib/data.ts`; the index, preview and strip pick them up.",
+      "Do write copy in plain first person, sentence case.",
+      "Do respect `prefers-reduced-motion` for any new motion."
+    ],
+    "donts": [
+      "Don't add drop or ambient shadows; the portrait's paper ring is the only box-shadow.",
+      "Don't put eyebrows or kickers above headings.",
+      "Don't use em dashes in copy.",
+      "Don't use pill-shaped or fully rounded buttons.",
+      "Don't add more full-bleed lavender fields or plum bands; two fields bookend the page and one band holds Work.",
+      "Don't add looping or constant animation; the dots settling on load is the one entrance.",
+      "Don't use terminal, console or operating-system window looks."
+    ]
+  }
+}
