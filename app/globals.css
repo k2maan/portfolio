@@ -551,8 +551,8 @@ svg {
   font-size: 17px;
 }
 
-/* Projects: one list and one preview. Phones: the preview sticks above the list as it scrolls.
-   Wide screens: the list sits beside the preview. */
+/* Projects. Phones: a row of cards swiped sideways, each with its screenshot. Wide screens: one
+   list beside a large preview. */
 .projects {
   max-width: calc(var(--wide) + 2 * var(--gutter));
   margin: 0 auto;
@@ -560,19 +560,7 @@ svg {
 }
 
 .index {
-  display: flex;
-  flex-direction: column;
   margin-top: 32px;
-}
-
-.index-list {
-  border-top: 1px solid var(--line);
-}
-
-.entry {
-  border-bottom: 1px solid var(--line);
-  /* Following a strip link (or tapping a name) lands the entry just under the sticky preview */
-  scroll-margin-top: calc((100vw - 2 * var(--gutter)) * 0.625 + 40px);
 }
 
 .entry h3 {
@@ -588,8 +576,6 @@ svg {
   align-items: baseline;
   gap: 2px 16px;
   width: 100%;
-  padding: 18px 0 10px;
-  cursor: pointer;
 }
 
 .entry-name {
@@ -601,31 +587,12 @@ svg {
   transition: color 0.3s var(--ease);
 }
 
-/* The active project's name is full ink; the rest step back */
-.entry:not([data-open]) .entry-name {
-  color: color-mix(in srgb, var(--ink) 45%, var(--paper));
-}
-
-.entry:not([data-open]) .entry-head:hover .entry-name {
-  color: var(--ink);
-}
-
 .entry-kind,
 .entry-year {
   justify-self: end;
   font-size: 14px;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
-}
-
-.entry-body {
-  display: grid;
-  grid-template-rows: 1fr;
-}
-
-.entry-inner {
-  min-height: 0;
-  padding-bottom: 20px;
 }
 
 .entry-summary {
@@ -648,55 +615,60 @@ svg {
   color: var(--muted);
 }
 
-.preview {
-  order: -1;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  padding: 12px 0 16px;
-  background: var(--paper);
-}
-
-.preview-stage {
-  position: relative;
-  aspect-ratio: 16 / 10;
-}
-
-/* Every screenshot is 16:10, so each fills the same frame; the active one fades in. No frame:
-   rounded corners and a hairline edge only. */
+/* Screenshots have no frame: rounded corners and a hairline edge only */
+.entry-shot img,
 .preview-shot {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 0 0 1px var(--line);
-  opacity: 0;
-  transition: opacity 0.35s ease;
 }
 
-.preview-shot[data-active] {
-  opacity: 1;
-}
-
-/* Only the active project is open; the others are just their names */
-.index {
-  /* The component holds the open project in place itself, so the browser shouldn't also adjust */
-  overflow-anchor: none;
-}
-
-.entry:not([data-open]) .entry-body {
+.preview {
   display: none;
 }
 
-.entry[data-open] .entry-inner {
-  animation: open-in 0.35s ease both;
-}
+@media (max-width: 959px) {
+  /* The row bleeds to the screen edges so the next card peeks in, and snaps one card at a time */
+  .index-list {
+    display: flex;
+    gap: 16px;
+    margin: 0 calc(-1 * var(--gutter));
+    padding: 4px var(--gutter) 12px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
 
-@keyframes open-in {
-  from {
-    opacity: 0;
+  .index-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .entry {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 84%;
+    max-width: 420px;
+    scroll-snap-align: start;
+    scroll-margin-top: 24px;
+  }
+
+  .entry-shot {
+    display: block;
+    order: -1;
+  }
+
+  /* Name on its own line, then kind and year */
+  .entry-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 12px;
+    padding: 16px 0 10px;
+    cursor: default;
+  }
+
+  .entry-name {
+    flex-basis: 100%;
   }
 }
 
@@ -708,31 +680,43 @@ svg {
     align-items: start;
   }
 
+  .index-list {
+    border-top: 1px solid var(--line);
+  }
+
   .entry {
+    border-bottom: 1px solid var(--line);
     scroll-margin-top: 24px;
+  }
+
+  .entry-shot {
+    display: none;
   }
 
   .entry-head {
     padding: 18px 0;
+    cursor: pointer;
   }
 
-  /* Wide screens animate the open and close instead of switching instantly */
-  .entry:not([data-open]) .entry-body {
-    display: grid;
+  /* The active project's name is full ink; the rest step back */
+  .entry:not([data-open]) .entry-name {
+    color: color-mix(in srgb, var(--ink) 45%, var(--paper));
   }
 
-  .entry[data-open] .entry-inner {
-    animation: none;
+  .entry:not([data-open]) .entry-head:hover .entry-name {
+    color: var(--ink);
   }
 
+  /* Closed entries are just their name; the open one shows its description */
   .entry-body {
+    display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.5s var(--ease);
   }
 
   .entry-inner {
+    min-height: 0;
     overflow: hidden;
-    padding-bottom: 0;
   }
 
   .entry[data-open] .entry-body {
@@ -744,20 +728,34 @@ svg {
   }
 
   .preview {
-    order: 0;
+    display: block;
+    position: sticky;
     top: 32px;
-    padding: 0;
-    background: none;
+  }
+
+  .preview-stage {
+    position: relative;
+    aspect-ratio: 16 / 10;
+  }
+
+  /* Every screenshot is 16:10, so each fills the same frame; the active one fades in */
+  .preview-shot {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .preview-shot[data-active] {
+    opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .entry[data-open] .entry-inner {
-    animation: none;
-  }
-
   .entry-body,
-  .entry-inner,
   .entry-name,
   .preview-shot {
     transition: none;

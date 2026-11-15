@@ -23,7 +23,7 @@ STORY: He is an FDE at Bluecore who also builds small games and tools. Projects 
 
 FIRST VIEWPORT: Lavender field. Header with handle left, nav and theme toggle right. Name large at 6rem, with a 176px portrait well to its right (thin ring, wall visible above the hair). Lead with the FDE role first (no "technical lead", no "coding agents" in visible copy), contact links, then the year strip: one dot per project from 2020 to 2026 with no caption, each dot opening its project in the list. The Projects heading sits at the fold at 1440x900.
 
-SIGNATURE: Project index. On wide screens a list sits beside a sticky lavender preview. Pointing at or focusing a project opens its description and wipes its screenshot up over the last one. On phones every project shows its own screenshot.
+SIGNATURE: Project index. On wide screens a list sits beside a sticky lavender preview. Pointing at or focusing a project opens its description and wipes its screenshot up over the last one. On phones the projects are a swipeable row of cards (CSS scroll-snap), each with its own screenshot; nothing on a phone listens to the page scroll.
 
 FORM: category standard (canon), chosen after three re-rolls; seed:7ecee2826149c3d1.
 
