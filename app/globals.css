@@ -396,7 +396,8 @@ svg {
 }
 
 .shipped-dot:hover,
-.shipped-dot:focus-visible {
+.shipped-dot:focus-visible,
+.shipped-dot[data-shown] {
   transform: scale(1.25);
   background: var(--field-muted);
 }
@@ -425,7 +426,8 @@ svg {
 }
 
 .shipped-dot:hover .shipped-tip,
-.shipped-dot:focus-visible .shipped-tip {
+.shipped-dot:focus-visible .shipped-tip,
+.shipped-dot[data-shown] .shipped-tip {
   opacity: 1;
 }
 

@@ -22,17 +22,6 @@ export default function ProjectIndex({ products }: { products: Product[] }) {
     return () => query.removeEventListener("change", update);
   }, []);
 
-  // The shipped strip in the intro links to #slug; open that project when it is followed
-  useEffect(() => {
-    function fromHash() {
-      const i = products.findIndex((p) => `#${p.slug}` === window.location.hash);
-      if (i >= 0) setActive(i);
-    }
-    fromHash();
-    window.addEventListener("hashchange", fromHash);
-    return () => window.removeEventListener("hashchange", fromHash);
-  }, [products]);
-
   // A short delay, so sweeping the pointer down the list doesn't flicker through every project
   function hoverTo(i: number) {
     window.clearTimeout(hoverTimer.current);
