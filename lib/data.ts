@@ -1,4 +1,5 @@
 import type { StaticImageData } from "next/image";
+import rolediff from "@/public/projects/rolediff-og.jpg";
 import perk from "@/public/projects/perk.jpg";
 import gittingOverIt from "@/public/projects/git-ing-over-it.jpg";
 import diyaDuty from "@/public/projects/diya-duty.jpg";
@@ -121,6 +122,18 @@ export type Product = {
 };
 
 export const products: Product[] = [
+  {
+    slug: "rolediff",
+    name: "Rolediff",
+    kind: "Web app",
+    year: 2026,
+    live: true,
+    image: rolediff,
+    imageAlt: "Rolediff: “AI hiring in India, as it happens.” above a diff that swaps stale job boards for companies’ own careers pages, read twice a day",
+    summary:
+      "A live list of AI jobs in India that shows what changed. It reads companies’ own careers pages twice a day, marks which roles opened and which closed, and links every open job to the company’s own page.",
+    links: [{ label: "Visit it", href: "https://rolediff.com/" }],
+  },
   {
     slug: "git-ing-over-it",
     name: "Git-ing Over It",
