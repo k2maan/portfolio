@@ -1,5 +1,5 @@
 import type { StaticImageData } from "next/image";
-import rolediff from "@/public/projects/rolediff-og.jpg";
+import rolediff from "@/public/projects/rolediff.jpg";
 import perk from "@/public/projects/perk.jpg";
 import gittingOverIt from "@/public/projects/git-ing-over-it.jpg";
 import diyaDuty from "@/public/projects/diya-duty.jpg";
@@ -129,10 +129,10 @@ export const products: Product[] = [
     year: 2026,
     live: true,
     image: rolediff,
-    imageAlt: "Rolediff: “AI hiring in India, as it happens.” above a diff that swaps stale job boards for companies’ own careers pages, read twice a day",
+    imageAlt: "Rolediff: “AI hiring in India, as it happens.” beside a day’s diff of AI roles in India, four opened and one closed, above a bar of open roles by kind of AI work",
     summary:
       "A live list of AI jobs in India that shows what changed. It reads companies’ own careers pages twice a day, marks which roles opened and which closed, and links every open job to the company’s own page.",
-    links: [{ label: "Visit it", href: "https://rolediff.com/" }],
+    links: [{ label: "Visit", href: "https://rolediff.com/" }],
   },
   {
     slug: "git-ing-over-it",
@@ -144,7 +144,7 @@ export const products: Product[] = [
     imageAlt: "Git-ing Over It title screen, with a coworker’s chat message about a lost commit and a terminal running git reflog",
     summary:
       "A game that teaches git judgment, not git commands. A coworker messages you about something that went wrong, you fix it in a real terminal, and the game checks the repo you end up with, so any valid fix passes.",
-    links: [{ label: "Play it", href: "https://git-ing-over-it.vercel.app/" }],
+    links: [{ label: "Play", href: "https://git-ing-over-it.vercel.app/" }],
   },
   {
     slug: "diya-duty",
@@ -156,7 +156,7 @@ export const products: Product[] = [
     imageAlt: "Diya Duty: Dadi asks “Kaam kya karte ho, exactly?” in the Puja Room, and the player answers “Vibe coder hoon, Dadi…”",
     summary:
       "A Diwali party game about dodging your relatives’ questions. Walk through five rooms of a family party, light every diya, and get past Bua, Mausi and Rishta Aunty before they ask about your package. Plays in your phone’s browser, with no app or login.",
-    links: [{ label: "Play it", href: "https://diyaduty.pages.dev/" }],
+    links: [{ label: "Play", href: "https://diyaduty.pages.dev/" }],
   },
   {
     slug: "perk",
@@ -197,7 +197,7 @@ export const products: Product[] = [
     imageAlt: "EasyResume editor with colour, font and link options above a blank resume template",
     summary: "A resume builder for clean, ATS-friendly resumes, with options for font, colour and links, and a print-ready export.",
     links: [
-      { label: "Try it", href: "https://easyresume.vercel.app/" },
+      { label: "Try", href: "https://easyresume.vercel.app/" },
       { label: "Source", href: "https://github.com/k2maan/easyresume" },
     ],
   },
