@@ -257,6 +257,34 @@ svg {
   transition: background-color 0.2s var(--ease);
 }
 
+/* The toggle shows where a click takes you: a moon in light mode, a sun in dark. These follow the
+   same rules as the color tokens above, so the icon is right before any script runs. */
+.theme-icon {
+  grid-area: 1 / 1;
+}
+
+.theme-icon-sun {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-icon-moon {
+    display: none;
+  }
+
+  :root:not([data-theme="light"]) .theme-icon-sun {
+    display: block;
+  }
+}
+
+:root[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-icon-sun {
+  display: block;
+}
+
 @media (max-width: 520px) {
   .site-header nav a {
     padding: 6px 7px;

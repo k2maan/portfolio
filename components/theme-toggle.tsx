@@ -41,10 +41,25 @@ export default function ThemeToggle() {
 
   return (
     <button type="button" className="theme-toggle" onClick={toggle} aria-label={label} title={label}>
-      {/* A circle, half ink: the same shape in both themes, filled on the side of the current one */}
-      <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true">
-        <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor" />
+      {/* Both icons render; CSS shows the one for the theme a click switches to, so the right one is
+          there on first paint, before React knows the theme. A moon in light mode, a sun in dark. */}
+      <svg className="theme-icon theme-icon-moon" viewBox="0 0 16 16" width="18" height="18" aria-hidden="true">
+        <path
+          d="M13.6 9.9A5.75 5.75 0 0 1 6.1 2.4a5.75 5.75 0 1 0 7.5 7.5z"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
+        />
+      </svg>
+      <svg className="theme-icon theme-icon-sun" viewBox="0 0 16 16" width="18" height="18" aria-hidden="true">
+        <circle cx="8" cy="8" r="2.9" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <path
+          d="M8 1v1.6M8 13.4V15M1 8h1.6M13.4 8H15M3.05 3.05l1.13 1.13M11.82 11.82l1.13 1.13M3.05 12.95l1.13-1.13M11.82 4.18l1.13-1.13"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
       </svg>
     </button>
   );
